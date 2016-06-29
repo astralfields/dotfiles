@@ -19,7 +19,7 @@ if you're looking for my old Ocean setup, you can find it [here](https://github.
 I use urxvt with a 256 color patch as terminal emulator. If you don't want to use this then
 you'll need to heavily edit my i3 config.
 
-## Optional requirements
+## Other things you may want
 
 - [i3blocks](https://github.com/vivien/i3blocks), if you NEED a systray and thus have to use i3bar instead of lemonbar. I have config files for that in here too. It will look different, but it's quite nice IMO.
 - Thunar, because it's simple, and because it has thunar-volman. Perhaps I should look into other options? I really need automatic volume mounting.
