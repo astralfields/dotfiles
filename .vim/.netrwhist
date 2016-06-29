@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/media/Daten/CodeBlocks/2015-09-08-wechselkurs'
+let g:netrw_dirhist_2='/media/Daten/CodeBlocks/2016-02-09_bankautomat'
+let g:netrw_dirhist_3='/home/marko/.config/i3status'

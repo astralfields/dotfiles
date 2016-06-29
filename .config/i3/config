@@ -1,0 +1,215 @@
+# vim:filetype=i3
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+# == SETTINGS ==
+# ==============
+
+# Mod = Super
+set $mod Mod4
+floating_modifier $mod
+
+font pango:Source Code Pro, FontAwesome 10
+
+# Gaps
+gaps inner 14
+gaps outer 4
+for_window [class="^.*"] border pixel 2
+
+# == window-specific settings ==
+
+for_window [class="Audacious"] border none
+for_window [instance="__scratchpad"] floating enable
+for_window [instance="__nmtui"] floating enable
+
+# == COLORS ==
+# ============
+
+# class                 border  backgr. text    indicator
+client.focused          #39c6fe #39c6fe #282828 #39c6fe
+client.focused_inactive #39c6fe #282828 #dcdcdc #282828
+client.unfocused        #39c6fe #282828 #dcdcdc #282828
+client.urgent           #cc241d #cc241d #dcdcdc #cc241d
+client.placeholder      #2d2d2d #2d2d2d #dcdcdc #2d2d2d
+
+# == KEYBINDS ==
+# ==============
+
+# open apps
+bindsym $mod+Return exec urxvt
+bindsym $mod+Shift+Return exec urxvt -name __scratchpad
+bindsym $mod+a exec audacious
+bindsym $mod+e exec thunar
+bindsym $mod+l exec --no-startup-id $HOME/scripts/lock.sh
+bindsym $mod+m exec thunderbird
+bindsym $mod+w exec firefox
+
+# dmenu
+bindsym $mod+d exec --no-startup-id dmenu_run -i -b -nb \#2b303b -nf \#c0c5ce -sb \#c0c5ce -sf \#2b303b
+
+# kill
+bindsym $mod+q kill
+bindsym $mod+Shift+q kill
+
+# change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+Left move left 25px
+bindsym $mod+Shift+Down move down 25px
+bindsym $mod+Shift+Up move up 25px
+bindsym $mod+Shift+Right move right 25px
+
+# split
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+# fullscreen for focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+z layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# toggle sticky mode
+bindsym $mod+Shift+s sticky toggle
+
+# scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+Shift+plus scratchpad show
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+
+# switch workspaces
+bindsym Mod1+Tab focus right
+bindsym Mod1+Shift+Tab focus left
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# capslock indicator
+# you can use this if you decide to use i3bar+i3blocks
+#bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
+
+# volume
+bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/scripts/volume_control.py down 5
+bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/scripts/volume_control.py up 5
+bindsym XF86AudioMute exec --no-startup-id $HOME/scripts/volume_control.py toggle 5
+
+# == MODES ==
+# ###########
+
+# resize window
+mode "resize" {
+	bindsym Left resize shrink width 5 px or 2 ppt
+	bindsym Down resize shrink height 5 px or 2 ppt
+	bindsym Up resize grow height 5 px or 2 ppt
+	bindsym Right resize grow width 5 px or 2 ppt
+
+	bindsym Return mode "default", exec echo "" > $HOME/.i3mode
+	bindsym Escape mode "default", exec echo "" > $HOME/.i3mode
+}
+bindsym $mod+r exec echo "resize" > $HOME/.i3mode, mode "resize"
+
+set $settings "settings: (a) pulseaudio settings (l) lxappearance (p) power management (w) wifi"
+mode $settings {
+	bindsym a exec pavucontrol, exec echo "" > $HOME/.i3mode, mode "default"
+	bindsym l exec lxappearance, exec echo "" > $HOME/.i3mode, mode "default"
+	bindsym p exec xfce4-power-manager-settings, exec echo "" > $HOME/.i3mode, mode "default"
+	bindsym w exec urxvt -name __nmtui -e nmtui, exec echo "" > $HOME/.i3mode, mode "default"
+
+	bindsym Return mode "default", exec echo "" > $HOME/.i3mode
+	bindsym Escape mode "default", exec echo "" > $HOME/.i3mode
+}
+bindsym $mod+x exec echo $settings > $HOME/.i3mode, mode $settings
+
+set $power "power: (l) logout (s) shutdown (r) reboot"
+mode $power {
+	bindsym l exec echo "" > $HOME/.i3mode, exec i3-msg exit, mode "default"
+	bindsym s exec echo "" > $HOME/.i3mode, exec systemctl poweroff, mode "default"
+	bindsym r exec echo "" > $HOME/.i3mode, exec systemctl reboot, mode "default"
+
+	bindsym Return exec echo "" > $HOME/.i3mode, mode "default"
+	bindsym Escape exec echo "" > $HOME/.i3mode, mode "default"
+}
+bindsym $mod+p exec echo $power > $HOME/.i3mode, mode $power
+
+
+# == BAR ==
+# =========
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+#bar {
+	## start i3bar in transparency mode, use RGBA colors!
+	#i3bar_command i3bar -t
+	#status_command i3blocks
+	## status_command py3status -c $HOME/.config/i3status/config
+	#position bottom
+	#font pango:Source Code Pro, FontAwesome 10
+	#separator_symbol "■"
+	#height 24
+
+	#colors {
+		#background	#28282800
+		#statusline	#c0c5ceff
+		#separator	#00000000
+
+		##colorclass			border		backgr		text
+		#focused_workspace	#00000000	#d5c4a1ff	#2b303bff
+		#active_workspace	#00000000	#00000000	#c0c5ceff
+		#inactive_workspace	#00000000	#00000000	#c0c5ceff
+		#urgent_workspace	#00000000	#cc241dff	#ddddddff
+		#binding_mode		#00000000	#d5c4a1ff	#2b303bff
+	#}
+#}
+
+# == AUTOSTART ==
+# ===============
+
+# this script sets a wallpaper based on battery level
+exec --no-startup-id $HOME/scripts/wallpaper.sh
+
+# Start compton with vsync to eliminate tearing, and only have shadow on focused window
+exec --no-startup-id compton --vsync opengl --shadow-exclude '!focused'
+
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id nm-applet
+exec --no-startup-id dunst
+
+exec_always $HOME/scripts/lemonbar.sh
