@@ -16,25 +16,16 @@ if you're looking for my old Ocean setup, you can find it [here](https://github.
 - lemonbar with xft patch
 - [lemonbuddy](https://github.com/jaagr/lemonbuddy)
 
+I use urxvt with a 256 color patch as terminal emulator. If you don't want to use this then
+you'll need to heavily edit my i3 config.
+
 ## Optional requirements
 
 - [i3blocks](https://github.com/vivien/i3blocks), if you NEED a systray and thus have to use i3bar instead of lemonbar. I have config files for that in here too. It will look different, but it's quite nice IMO.
-
-With *needing* a systray I mean being dependent on a systray applet. Things like volume or network
-applets don't count - I use nmtui for network management and pavucontrol for all audio stuff
-beyond changing volume and muting.
-
-Actually... do whatever you want. I'm not your mum. But it probably won't hurt to try something new instead of keeping the old habits.
-
-
-## Other stuff I use
-
-These are absolutely optional.
-
 - Thunar, because it's simple, and because it has thunar-volman. Perhaps I should look into other options? I really need automatic volume mounting.
 - Firefox, but not with vimperator. Crazy, right? I use VimFX instead, it's much lighter and does everything I need. After all I just want to be able to browse without a mouse, not completely overhaul Firefox.
 - i3lock
-- vim (totally required :^) )
+- vim - totally required :^)
 - xfce4-power-manager
 
 ## Additional resources
@@ -70,3 +61,9 @@ In order of significance:
 - setup rofi to replace dmenu
 - rice zathura
 - learn how to use and configure ranger
+
+I also have to reinstall Arch on both laptop and desktop. My laptop needs an SSD, the system
+is way too bloated, and I want to setup drive encryption since I take my laptop everywhere.  
+As for my desktop, I don't boot into it much (all I do at my home PC is gaming, for which
+I sadly still need Windows), but for some reason it behaves strangely. WINE especially has
+some weird errors. Here I also want F2FS, maybe drive encryption too.
