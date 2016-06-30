@@ -1,6 +1,8 @@
 # Ocean v2
 
-I am now using jaagr's way of tracking dotfiles with git, as explained in [his repo](https://github.com/jaagr/dots).
+I am now using jaagr's way of tracking dotfiles with git, as explained in
+[his repo](https://github.com/jaagr/dots). A shortened memo is at the bottom
+of this readme.
 
 if you're looking for my old Ocean setup, you can find it [here](https://github.com/suchtie/dotfiles-legacy).
 
@@ -67,3 +69,27 @@ is way too bloated, and I want to setup drive encryption since I take my laptop 
 As for my desktop, I don't boot into it much (all I do at my home PC is gaming, for which
 I sadly still need Windows), but for some reason it behaves strangely. WINE especially has
 some weird errors. Here I also want F2FS, maybe drive encryption too.
+
+# jaagr's dots alias stuff
+
+    alias dots='git --git-dir=$HOME/.dots.git/ --work-tree=$HOME'
+
+###Setup
+
+    git init --bare $HOME/.dots.git
+    dots remote add origin https://github.com/jaagr/dots.git
+
+    dots config alias.untracked "status -u ."
+    dots config alias.untracked-at "status -u"
+    dots config status.showUntrackedFiles no
+
+Use the `dots` command just like a git command. Add files with
+`dots add $HOME/.config/filename`, commit with `dots commit` and push with `dots push`.
+
+To completely copy my rice on a fresh GNU+Linux installation, only setup the `dots` alias,
+then do this:
+
+    git clone --recursive --separate-git-dir=$HOME/.dots.git https://github.com/suchtie/dotfiles.git /tmp/dots
+    rsync -rvl --exclude ".git" /tmp/dots $HOME/
+    rm -r /tmp/dots
+    dots submodule update --init --recursive
