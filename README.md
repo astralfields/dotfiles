@@ -65,16 +65,19 @@ In order of significance:
 - learn how to use and configure ranger
 
 I also have to reinstall Arch on both laptop and desktop. My laptop needs an SSD, the system
-is way too bloated, and I want to setup drive encryption since I take my laptop everywhere.  
-As for my desktop, I don't boot into it much (all I do at my home PC is gaming, for which
+is way too bloated, and I want to setup drive encryption since I take my laptop everywhere.
+I don't game on it much so performance doesn't really matter.  
+As for my desktop, I don't boot into Arch much (all I do at my home PC is gaming, for which
 I sadly still need Windows), but for some reason it behaves strangely. WINE especially has
-some weird errors. Here I also want F2FS, maybe drive encryption too.
+some weird errors. I also want to switch to F2FS, maybe use drive encryption too.
 
 # jaagr's dots alias stuff
 
+### Alias
+
     alias dots='git --git-dir=$HOME/.dots.git/ --work-tree=$HOME'
 
-###Setup
+### Setup
 
     git init --bare $HOME/.dots.git
     dots remote add origin https://github.com/jaagr/dots.git
