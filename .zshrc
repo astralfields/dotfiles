@@ -1,21 +1,47 @@
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-setopt appendhistory autocd nomatch notify
+setopt appendhistory autocd nomatch notify COMPLETE_ALIASES
 unsetopt beep extendedglob
-bindkey -e
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
+bindkey -v
 zstyle :compinstall filename '/home/marko/.zshrc'
-
+zstyle ':completion:*' menu select
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
 
-export PATH=$HOME/bin:$HOME/.gem/ruby/2.2.0/bin:${PATH}
+# keybinds
+
+cdUndoKey() {
+	popd	> /dev/null
+	zle		reset-prompt
+	echo
+	ls
+	echo
+}
+
+cdParentKey() {
+	pushd ..	> /dev/null
+	zle			reset-prompt
+	echo
+	ls
+	echo
+}
+
+zle -N				cdUndoKey
+zle -N				cdParentKey
+bindkey '^[[1;3D'	cdUndoKey
+bindkey '^[[1;3A'	cdParentKey
+
+# environment variables
+export PATH=$HOME/bin:$HOME/scripts:$HOME/.gem/ruby/2.2.0/bin:${PATH}
 export XDG_CONFIG_HOME=$HOME/.config
+export EDITOR=vim
+export VISUAL=vim
 
+# make systemd user services aware of PATH
+systemctl --user import-environment PATH
+
+# aliases
 alias vpn='sudo openvpn --config /media/windows/Program\ Files/OpenVPN/config/schule_Marko_Notebook_global.ovpn'
 alias dots='git --git-dir=$HOME/.dots.git/ --work-tree=$HOME'
 

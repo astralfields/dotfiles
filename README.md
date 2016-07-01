@@ -8,7 +8,7 @@ if you're looking for my old Ocean setup, you can find it [here](https://github.
 
 ## Screenshots
 
-**Screenshots will be posted shortly** (when I'm mostly done ricing)
+**Screenshots will be posted later** (when I'm mostly done ricing).
 
 # Requirements
 
@@ -29,6 +29,7 @@ you'll need to heavily edit my i3 config.
 - i3lock
 - vim - totally required :^)
 - xfce4-power-manager
+- mpd / ncmpcpp
 
 ## Additional resources
 
@@ -59,7 +60,8 @@ Github usernames.
 
 In order of significance:
 
-- setup mpd/ncmpcpp
+- ~~setup mpd/ncmpcpp~~ *done!*
+- fix the horribly kludged ncmpcpp config
 - setup rofi to replace dmenu
 - rice zathura
 - learn how to use and configure ranger

@@ -202,14 +202,17 @@ bindsym $mod+p exec echo $power > $HOME/.i3mode, mode $power
 # == AUTOSTART ==
 # ===============
 
+# vsync to eliminate tearing, remove "--vsync opengl" if necessary
+exec --no-startup-id compton --vsync opengl --shadow-exclude '!focused'
+
+# enable nmapplet if you use a bar with systray support, like i3bar
+#exec --no-startup-id nm-applet
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id dunst
+exec --no-startup-id mpd $HOME/.config/mpd/mpd.conf
+
+exec_always $HOME/scripts/lemonbar.sh
+
 # this script sets a wallpaper based on battery level
 exec --no-startup-id $HOME/scripts/wallpaper.sh
 
-# Start compton with vsync to eliminate tearing, and only have shadow on focused window
-exec --no-startup-id compton --vsync opengl --shadow-exclude '!focused'
-
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id nm-applet
-exec --no-startup-id dunst
-
-exec_always $HOME/scripts/lemonbar.sh

@@ -45,7 +45,6 @@ font-1 = Siji:pixelsize=10;0
 font-2 = FontAwesome:size=10;0
 
 modules-left = mpd
-;modules-center = i3
 modules-right = cpu ram backlight volume wifi battery date time
 
 [bar/bottom]
@@ -61,8 +60,8 @@ linecolor = #fff
 spacing = 2
 lineheight = 2
 
-padding_left = 0
-padding_right = 0
+padding_left = 1
+padding_right = 1
 module_margin_left = 1
 module_margin_right = 1
 
@@ -72,7 +71,7 @@ font-2 = FontAwesome:size=10;0
 
 modules-left = i3mode
 modules-center = i3
-;modules-right = 
+;modules-right =
 
 [module/cpu]
 type = internal/cpu
@@ -150,7 +149,7 @@ interval = 5.0
 
 format-connected = <ramp-signal> <label-connected>
 format-padding = 1
-label-connected = "%essid%  "
+label-connected = %{A:urxvt -name __nmtui -e nmtui:}%essid%  %{A}
 label-disconnected = NO CONNECTION
 label-disconnected-background = #f00
 
@@ -189,33 +188,19 @@ format-background = #fff
 
 [module/mpd]
 type = internal/mpd
-
-format-online = <label-song>  <label-time>  <bar-progress>  <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>
+format-online = <icon-prev> <icon-seekb> <toggle> <icon-seekf> <icon-next>  <label-song> <label-time>
 
 icon-prev = 
 icon-seekb = 
-icon-stop = 
 icon-play = 
 icon-pause = 
 icon-next = 
 icon-seekf = 
 
-icon-random = 
-icon-repeat = 
-
-toggle_on-foreground = #fba922
-toggle_off-foreground = #66
-
-bar-progress-width = 15
+bar-progress-width = 30
+bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
 bar-progress-indicator = 
-bar-progress-indicator-foreground = #bb
 bar-progress-fill = ─
-bar-progress-fill-foreground = #bb
-bar-progress-fill-font = 3
 bar-progress-empty = ─
-bar-progress-empty-foreground = #44
-bar-progress-empty-font = 3
-
-label-time-foreground = #55
 
 ; vim:ft=dosini
