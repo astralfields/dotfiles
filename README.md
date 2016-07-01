@@ -18,7 +18,7 @@ if you're looking for my old Ocean setup, you can find it [here](https://github.
 - lemonbar with xft patch
 - [lemonbuddy](https://github.com/jaagr/lemonbuddy)
 
-I use urxvt with a 256 color patch as terminal emulator. If you don't want to use this then
+I use urxvt with a 256 color patch as terminal emulator. If you want to use a different terminal then
 you'll need to heavily edit my i3 config.
 
 ## Other things you may want
