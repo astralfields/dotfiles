@@ -1,3 +1,4 @@
+; vim:ft=dosini
 ;=====================================================
 ;
 ;   To learn more about how to configure Lemonbuddy
@@ -45,7 +46,7 @@ font-1 = Siji:pixelsize=10;0
 font-2 = FontAwesome:size=10;0
 
 modules-left = mpd
-modules-right = cpu ram backlight volume wifi battery date time
+modules-right = cpu ram backlight vol wifi battery date time
 
 [bar/bottom]
 bottom = true
@@ -122,8 +123,9 @@ ramp-capacity-10 = 
 
 [module/volume]
 type = internal/volume
-;speaker_mixer = Speaker
-;headphone_mixer = Headphone
+master_mixer = Master
+speaker_mixer = IEC958
+;headphone_mixer = IEC958
 ;headphone_control_numid = 9
 
 format-volume-padding = 1
@@ -150,7 +152,7 @@ interval = 5.0
 format-connected = <ramp-signal> <label-connected>
 format-padding = 1
 label-connected = %{A:urxvt -name __nmtui -e nmtui:}%essid%  %{A}
-label-disconnected = NO CONNECTION
+label-disconnected = %{A:urxvt -name __nmtui -e nmtui:} NO CONNECTION %{A}
 label-disconnected-background = #f00
 
 ramp-signal-0 = 
@@ -186,6 +188,11 @@ format-padding = 1
 format-foreground = #666
 format-background = #fff
 
+[module/vol]
+type = custom/script
+exec = echo " $(pactl list sinks | grep -m 1 "Volume: " | awk '{print $5}')"
+format-padding = 1
+
 [module/mpd]
 type = internal/mpd
 format-online = <icon-prev> <icon-seekb> <toggle> <icon-seekf> <icon-next>  <label-song> <label-time>
@@ -203,4 +210,3 @@ bar-progress-indicator = 
 bar-progress-fill = ─
 bar-progress-empty = ─
 
-; vim:ft=dosini
