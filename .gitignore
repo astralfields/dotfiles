@@ -1,3 +1,5 @@
+*.swp
+
 .config/mpd/database
 .config/mpd/log
 .config/mpd/pid
