@@ -65,6 +65,22 @@ for_window [instance="__nmtui"] floating enable
 
 assign [class="(?i)thunderbird"] workspace 9
 
+# == Display settings for desktop ==
+
+# workspace 1 output DP-4.8
+# workspace 2 output HDMI-0
+# workspace 3 output DP-4.8
+# workspace 4 output HDMI-0
+# workspace 5 output DP-4.8
+# workspace 6 output HDMI-0
+# workspace 7 output DP-4.8
+# workspace 8 output HDMI-0
+# workspace 9 output DP-4.8
+# workspace 10 output HDMI-0
+
+# mouse_warping none
+
+
 # == COLORS ==
 # ============
 
@@ -195,10 +211,14 @@ bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN
 # == MODES ==
 # ###########
 
-# Note that I am not using a regular mode display in my i3bar.
-# Instead, the name of the mode is piped into ~/.i3mode, which
-# is read by i3blocks and displayed in a text block.
-# I forgot why I'm doing this but there must be some reason...
+# NOTE:
+# I route the name of modes into the .i3mode file because I used to use lemonbar and lemonbuddy.
+# These don't have i3 mode support so I just implemented a text block that reads the .i3lock
+# file. Simple enough.
+# lemonbuddy however is now its own bar called polybar which is pretty popular on /r/unixporn
+# right now so I'll leave the commands in here, expecting that polybar works similarly to
+# how lemonbuddy did. Might be useful, and doesn't hurt to be left in since all it does is
+# create a text file that's useless to anything else.
 
 # RESIZE MODE
 mode "resize" {
