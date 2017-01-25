@@ -102,7 +102,7 @@ bindsym $mod+l exec --no-startup-id $HOME/scripts/lock.sh
 bindsym $mod+m exec thunderbird, workspace 9
 bindsym $mod+w exec firefox
 
-# media mode: put YouTube into fullscreen and execute this. Thanks Airblader!
+# media mode: using Chrom(e/ium), put YouTube into fullscreen and execute this. Thanks Airblader! Wish it worked with Firefox though.
 bindsym $mod+y fullscreen disable; floating enable; resize set 300 200; sticky enable; move window to position 1060 6
 
 # dmenu2
@@ -302,7 +302,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id xfsettingsd
 exec --no-startup-id dunst
-exec --no-startup-id mpd $HOME/.config/mpd/mpd.conf
+exec --no-startup-id mpd
 
 # this script sets a wallpaper based on battery level
 exec --no-startup-id $HOME/scripts/wallpaper.sh
