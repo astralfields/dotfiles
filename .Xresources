@@ -8,11 +8,11 @@ URxvt.iso14755: false
 URxvt.iso14755_52: false
 
 ! font
-URxvt*font: xft:Source\ Code\ Pro\ Medium:size=8:antialias=true:hinting=true,-*-siji-*-*-*-*-10-100-75-75-c-80-*-*,xft:FontAwesome:size:8:antialias=true:hinting=false
+URxvt*font: xft:Source\ Code\ Pro\ Medium:size=8:antialias=true:hinting=true,xft:FontAwesome:size:8:antialias=true:hinting=false
 ! URxvt.letterSpace: -1
 
 ! terminal padding
-URxvt.internalBorder: 5
+URxvt.internalBorder: 0
 
 ! uncomment for transparent terminal if you are ready to be made fun of in #rice
 ! URxvt.transparent:	true
@@ -27,7 +27,7 @@ Xft.antialias: 1
 Xft.rgba: rgb
 
 ! clickable links, clipboard support, mouse wheel support, and on the fly font resizing
-! you will need to install the relevent perl extensions for these to work
+! you will need to install the respective perl extensions for these to work
 URxvt.perl-ext-common: default,matcher,clipboard,vtwheel,resize-font
 URxvt.url-launcher: /usr/bin/firefox
 URxvt.matcher.button: 1

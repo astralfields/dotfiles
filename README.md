@@ -10,7 +10,7 @@ TODO: Add screenshots.
 - compton
 
 As for the terminal, I use termite because it's so much easier to configure than urxvt and
-does everything I need out-of-the-box, where urxvt needs like 30 plugins.
+does everything I need out-of-the-box. There are still configs for urxvt that should mostly fit.
 
 ## Other software you may want
 
