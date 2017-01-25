@@ -1,9 +1,5 @@
-*.swp
+**/*.log
+**/*.swp
 
-.config/mpd/database
-.config/mpd/log
-.config/mpd/pid
-.config/mpd/state
-.config/mpd/sticker.sql
-
-.config/ncmpcpp/error.log
+.config/mpd/*
+!.config/mpd.conf
