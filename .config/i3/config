@@ -10,28 +10,28 @@
 set $mod Mod4
 set $term termite
 
-set $default_gaps_inner 0
+set $default_gaps_inner 15
 set $default_gaps_outer 0
 
 # totally copied from Airblader
-set_from_resource $darkred     color1  #000000
-set_from_resource $red         color9  #000000
-set_from_resource $darkgreen   color2  #000000
-set_from_resource $green       color10 #000000
-set_from_resource $darkyellow  color3  #000000
-set_from_resource $yellow      color11 #000000
-set_from_resource $darkblue    color4  #000000
-set_from_resource $blue        color12 #000000
-set_from_resource $darkmagenta color5  #000000
-set_from_resource $magenta     color13 #000000
-set_from_resource $darkcyan    color6  #000000
-set_from_resource $cyan        color14 #000000
-set_from_resource $darkwhite   color7  #000000
-set_from_resource $white       color15 #000000
+#set_from_resource $darkred     color1  #000000
+#set_from_resource $red         color9  #000000
+#set_from_resource $darkgreen   color2  #000000
+#set_from_resource $green       color10 #000000
+#set_from_resource $darkyellow  color3  #000000
+#set_from_resource $yellow      color11 #000000
+#set_from_resource $darkblue    color4  #000000
+#set_from_resource $blue        color12 #000000
+#set_from_resource $darkmagenta color5  #000000
+#set_from_resource $magenta     color13 #000000
+#set_from_resource $darkcyan    color6  #000000
+#set_from_resource $cyan        color14 #000000
+#set_from_resource $darkwhite   color7  #000000
+#set_from_resource $white       color15 #000000
 # Use custom colors for black
-set $black       #262626
-set $darkblack   #1d2021
-set $transparent #00000000
+# set $black       #262626
+# set $darkblack   #1d2021
+# set $transparent #00000000
 
 
 # == SETTINGS ==
@@ -41,7 +41,7 @@ floating_modifier $mod
 
 font pango:Source Code Pro, FontAwesome 8
 # for_window [class="^.*"] border none
-# for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 2
 
 gaps inner $default_gaps_inner
 gaps outer $default_gaps_outer
@@ -74,12 +74,20 @@ assign [class="(?i)thunderbird"] workspace 9
 #client.unfocused        #1d2021 #1d2021 #ebdbb2 #1d2021
 #client.urgent           #fb4934 #fb4934 #1d2021 #fb4934
 
+# Ocean v2 colors
+# class                 border  backgr. text    indicator
+client.focused          #39c6fe #39c6fe #282828 #39c6fe
+client.focused_inactive #39c6fe #282828 #dcdcdc #282828
+client.unfocused        #39c6fe #1d2021 #dcdcdc #282828
+client.urgent           #cc241d #cc241d #dcdcdc #cc241d
+client.placeholder		#2d2d2d	#2d2d2d #dcdcdc #2d2d2d
+
 #                       BORDER      BACKGROUND  TEXT        INDICATOR
-client.focused          $black      $black		$white		$black
-client.focused_inactive $black      $black      $white      $black
-client.unfocused        $black      $black      $darkwhite	$black
-client.urgent           $darkred    $darkred    $black      $darkred
-client.background $black
+#client.focused          $black      $black		$white		$black
+#client.focused_inactive $black      $black      $white      $black
+#client.unfocused        $black      $black      $darkwhite	$black
+#client.urgent           $darkred    $darkred    $black      $darkred
+#client.background $black
 
 
 # == KEYBINDS ==
@@ -94,13 +102,15 @@ bindsym $mod+l exec --no-startup-id $HOME/scripts/lock.sh
 bindsym $mod+m exec thunderbird, workspace 9
 bindsym $mod+w exec firefox
 
-# media mode: put YouTube into fullscreen and execute this
+# media mode: put YouTube into fullscreen and execute this. Thanks Airblader!
 bindsym $mod+y fullscreen disable; floating enable; resize set 300 200; sticky enable; move window to position 1060 6
 
-# dmenu
-bindsym $mod+d exec --no-startup-id dmenu_run -i -b -nb \#2b303b -nf \#c0c5ce -sb \#c0c5ce -sf \#2b303b
+# dmenu2
+# 1366x768:		-x 140 -y 300 -w 1086
+# 2560x1440:	-x
+bindsym $mod+d exec --no-startup-id dmenu_run -i -nb \#2b303b -nf \#dcdcdc -sb \#dcdcdc -sf \#2b303b -dim 0.6 -fn "Source Code Pro-10:normal" -p "run:" -l 7 -h 16 -x 140 -y 300 -w 1086
 
-# kill
+# kill stuff
 bindsym $mod+q kill
 bindsym $mod+Shift+q kill
 
@@ -168,25 +178,27 @@ bindsym Mod1+Shift+Tab focus left
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
-# reload the configuration file
+# reload the config file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+# restart i3 inplace
 bindsym $mod+Shift+r restart
 
-# capslock indicator
-# you can use this if you decide to use i3bar+i3blocks
+# My laptop is so cheap, it doesn't have a caplock LED - so I need a capslock indicator in my i3blocks.
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 
-# volume
-#bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/scripts/volume_control.py down 5
-#bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/scripts/volume_control.py up 5
-#bindsym XF86AudioMute exec --no-startup-id $HOME/scripts/volume_control.py toggle 5
-bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-mute 1 false; pactl -- set-sink-volume 1 -5%"
-bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-mute 1 false; pactl -- set-sink-volume 1 +5%"
-bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute 1 toggle"
+# volume stuff
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+12 i3blocks
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+12 i3blocks
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+12 i3blocks
+
 
 # == MODES ==
 # ###########
+
+# Note that I am not using a regular mode display in my i3bar.
+# Instead, the name of the mode is piped into ~/.i3mode, which
+# is read by i3blocks and displayed in a text block.
+# I forgot why I'm doing this but there must be some reason...
 
 # RESIZE MODE
 mode "resize" {
@@ -206,7 +218,7 @@ mode $settings {
 	bindsym a exec pavucontrol, exec echo "" > $HOME/.i3mode, mode "default"
 	bindsym l exec lxappearance, exec echo "" > $HOME/.i3mode, mode "default"
 	bindsym p exec xfce4-power-manager-settings, exec echo "" > $HOME/.i3mode, mode "default"
-	bindsym w exec urxvt -name __nmtui -e nmtui, exec echo "" > $HOME/.i3mode, mode "default"
+	bindsym w exec $term --name __nmtui -e nmtui, exec echo "" > $HOME/.i3mode, mode "default"
 	bindsym x exec xfce4-settings-manager, exec echo "" > $HOME/.i3mode, mode "default"
 
 	bindsym Return mode "default", exec echo "" > $HOME/.i3mode
@@ -257,8 +269,6 @@ bindsym $mod+i mode $mode_gaps_inner, exec echo $mode_gaps_inner > $HOME/.i3mode
 # == BAR ==
 # =========
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
 bar {
 	# start i3bar in transparency mode, use RGBA colors!
 	i3bar_command i3bar -t
@@ -285,18 +295,15 @@ bar {
 # == AUTOSTART ==
 # ===============
 
-# vsync to eliminate tearing, remove "--vsync opengl" if necessary
-exec --no-startup-id compton --vsync opengl --shadow-exclude '!focused'
+# compositing and window border glow (which is really just a colored shadow)
+exec --no-startup-id compton --shadow-exclude '!focused'
 
-# enable nmapplet if you use a bar with systray support, like i3bar
-#exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id xfsettingsd
 exec --no-startup-id dunst
 exec --no-startup-id mpd $HOME/.config/mpd/mpd.conf
 
-# exec_always $HOME/scripts/lemonbar.sh
-
 # this script sets a wallpaper based on battery level
-# exec --no-startup-id $HOME/scripts/wallpaper.sh
-exec_always --no-startup-id feh --bg-fill $HOME/.wallpapers/gruv.png
+exec --no-startup-id $HOME/scripts/wallpaper.sh
+# exec_always --no-startup-id feh --bg-fill $HOME/.wallpapers/ocean.jpg

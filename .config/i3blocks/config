@@ -6,47 +6,48 @@ border_top=0
 border_left=0
 border_right=0
 border_bottom=0
+interval=5
 
 [keyindicator]
-command=$HOME/scripts/keyindicator
+command=$HOME/scripts/keyindicator -c "#dcdcdc" -b "#fb4934" --hide
 instance=CAPS
+markup=pango
 interval=once
 signal=11
 
-#[volume]
-#label=    
-#command=[[ -z "${BLOCK_BUTTON}" ]] || ( [[ "${BLOCK_BUTTON}" == "1" ]] && ((/usr/bin/pavucontrol -t 3 --name "pavucontrol-bar" || true) && $HOME/scripts/volume_control.py signal) || $HOME/scripts/volume_control.py toggle ); $HOME/scripts/volume_control.py i3blocks
-#interval=5
-#signal=1
+#Doesn't quite work for me
+#[volume-pulseaudio]
+#command=$HOME/scripts/volume-pulseaudio
+#interval=once
+#signal=12
+#color=#83a598
 #markup=pango
 
-[brightness]
-label=    
-command=$HOME/scripts/brightness.sh
-interval=10
-signal=2
+[wireless]
+label=    
+command=echo "<b>$(iwgetid -r) </b>"
+interval=2
+color=#83a598
+markup=pango
 
-#[temperature]
-#label=   
-#command=echo "$($HOME/scripts/temperature.sh 'Core 0') $($HOME/scripts/temperature.sh 'Core 1') "
-#interval=5
-
-#[wireless]
-#label=    
-#command=[[ -z "$(iwgetid -r)"  ]] || echo "$(iwgetid -r) "
-#interval=2
+#[brightness]
+#label=    
+#command=echo "<b>$(printf "%.0f " $(xbacklight -get))</b>"
+#interval=10
+#signal=2
 #color=#83a598
-
+#markup=pango
 
 [battery]
-command=$HOME/scripts/battery.sh
+command=echo "$($HOME/scripts/battery.sh)"
 interval=10
-color=#b8bb23
+color=#83a598
+markup=pango
 
 [time]
 label=    
-command=echo "<b>`date +'%H:%M'`</b> "; [[ -z "${BLOCK_BUTTON}"  ]] || gsimplecal &
+command=echo "<b>`date +'%H:%M'`</b> "
 interval=1
 markup=pango
 separator_block_width=0
-color=#fb4934
+color=#83a598

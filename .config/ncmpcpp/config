@@ -1,7 +1,7 @@
 ##############################################################
-## WARNING													##
-## This file is a horrible mess but it works.				##
-## I will clean it up later.								##
+## This is the example configuration file. Copy it to       ##
+## $HOME/.ncmpcpp/config or $XDG_CONFIG_HOME/ncmpcpp/config ##
+## and set up your preferences.                             ##
 ##############################################################
 #
 ##### directories ######

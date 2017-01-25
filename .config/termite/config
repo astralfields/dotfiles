@@ -10,8 +10,8 @@ scroll_on_output = false
 urgent_on_bell = true
 
 [colors]
-background = #262626
-foreground = #ebdbb2
+background = #2b303b
+foreground = #dcdcdc
 color0  = #282828
 color8  = #928374
 color1  = #cc241d
