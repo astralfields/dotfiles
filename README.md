@@ -1,16 +1,17 @@
 # Ocean v2
 
-TODO: Add screenshots.
+![temp-screenshot](http://i.imgur.com/dUXJ6tT.png)
+
+This is pretty much what it's going to look like when done. Still have a few kinks to work out though.
 
 # Requirements
 
-- [i3-gaps-next](https://github.com/Airblader/i3) (not sure if the "next" branch is required but I use it)
-- [i3blocks-gaps](https://github.com/Airblader/i3blocks-gaps) (which works better with the i3bar added by i3-gaps-next)
-- terminal emulator with 256 colors and Unicode support
+- [i3-gaps](https://github.com/Airblader/i3)
+- [polybar](https://github.com/jaagr/polybar)
+- terminal emulator with 256 colors and Unicode support (configs provided for termite and rxvt-unicode)
 - compton
 
-As for the terminal, I use termite because it's so much easier to configure than urxvt and
-does everything I need out-of-the-box. There are still configs for urxvt that should mostly fit.
+I use i3-gaps' "next" branch and am not sure if you actually need it, perhaps the stable branch works too?
 
 ## Other software you may want
 
@@ -21,8 +22,8 @@ does everything I need out-of-the-box. There are still configs for urxvt that sh
 - vim
 - mpd + ncmpcpp
 
-I'd also like to mention that I'm currently using xfce4-power-manager. That's because my laptop
-uses some arcane technology which makes the screen brightness buttons very difficult to work
+I am also currently using xfce4-power-manager. That's because my laptop uses some
+arcane technology which makes the screen brightness buttons very difficult to work
 with, but Xfce's power manager can do it somehow.
 
 ## Additional resources
@@ -35,9 +36,12 @@ with, but Xfce's power manager can do it somehow.
 
 # Disclaimer
 
-Use all files at your own risk. I'm not responsible if you broke something because you just used the files as-is, without modifying them to fit your system.
+Use all files at your own risk. I'm not responsible if you broke something because you just used the files
+as-is, without modifying them to fit your system.
 
-Please pretend that the MIT license applies to all files in this repository. I don't really care what you do with them - share, copy, modify, whatever. Just don't post them elsewhere and say you made them. I use material from other people too, so I don't want to actually apply a license.
+Please pretend that the MIT license applies to all files in this repository. I don't really care what you do
+with them - share, copy, modify, whatever. Just don't post them elsewhere and say you made them. I use
+material from other people too, so I don't want to actually apply a license.
 
 # Credits
 
@@ -50,6 +54,6 @@ Github usernames.
 
 In order of significance:
 
-- switch to polybar
-- rice zathura
-- fix the horribly kludged ncmpcpp config (it works but oh my *god* is it ugly)
+- [x] switch to polybar
+- [ ] rice zathura
+- [ ] fix the horribly kludged ncmpcpp config (it works but oh my *god* is it ugly)
