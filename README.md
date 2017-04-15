@@ -3,6 +3,7 @@
 ![temp-screenshot](http://i.imgur.com/dUXJ6tT.png)
 
 This is pretty much what it's going to look like when done. Still have a few kinks to work out though.
+Especially need to find out why polybar won't display any Siji or FontAwesome icons.
 
 # Requirements
 
@@ -11,7 +12,7 @@ This is pretty much what it's going to look like when done. Still have a few kin
 - terminal emulator with 256 colors and Unicode support (configs provided for termite and rxvt-unicode)
 - compton
 
-I use i3-gaps' "next" branch and am not sure if you actually need it, perhaps the stable branch works too?
+I use the i3-gaps "next" branch but I'm not sure if you actually need it, perhaps the stable branch works too?
 
 ## Other software you may want
 
@@ -20,7 +21,7 @@ I use i3-gaps' "next" branch and am not sure if you actually need it, perhaps th
 - dunst
 - i3lock
 - vim
-- mpd + ncmpcpp
+- ncmpcpp
 
 I am also currently using xfce4-power-manager. That's because my laptop uses some
 arcane technology which makes the screen brightness buttons very difficult to work
