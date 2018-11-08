@@ -10,7 +10,7 @@
 set $mod Mod4
 set $term termite
 
-set $default_gaps_inner 30
+set $default_gaps_inner 15
 set $default_gaps_outer 0
 
 
@@ -20,6 +20,7 @@ set $default_gaps_outer 0
 floating_modifier $mod
 
 font pango:Source Code Pro, FontAwesome 8
+# for_window [class="^.*"] border none
 for_window [class="^.*"] border pixel 2
 
 gaps inner $default_gaps_inner
@@ -44,66 +45,49 @@ for_window [instance="__nmtui"] floating enable
 
 assign [class="(?i)thunderbird"] workspace 9
 
-# == Display settings for desktop ==
-
-workspace 1 output DP-4.8
-workspace 2 output HDMI-0
-workspace 3 output DP-4.8
-workspace 4 output HDMI-0
-workspace 5 output DP-4.8
-workspace 6 output HDMI-0
-workspace 7 output DP-4.8
-workspace 8 output HDMI-0
-workspace 9 output DP-4.8
-workspace 10 output HDMI-0
-
-mouse_warping none
-
-
 # == COLORS ==
 # ============
 
 # class                 border  backgr. text    indicator
-client.focused          #39c6fe #39c6fe #2b303b #39c6fe
-client.focused_inactive #39c6fe #343d46 #c0c5ce #343d46
-client.unfocused        #343d46 #343d46 #c0c5ce #343d46
-client.urgent           #bf616a #bf616a #2b303b #bf616a
-client.placeholder		#2b303b	#2b303b #c0c5ce #2b303b
+#client.focused          #262626 #262626 #ebdbb2 #262626
+#client.focused_inactive #262626 #262626 #ebdbb2 #262626
+#client.unfocused        #1d2021 #1d2021 #ebdbb2 #1d2021
+#client.urgent           #fb4934 #fb4934 #1d2021 #fb4934
 
-
+# Ocean v2 colors
 # class                 border  backgr. text    indicator
-#client.focused          #39c6fe #39c6fe #282828 #39c6fe
-#client.focused_inactive #39c6fe #2b303b #dcdcdc #282828
-#client.unfocused        #39c6fe #2b303b #dcdcdc #282828
-#client.urgent           #cc241d #cc241d #dcdcdc #cc241d
-#client.placeholder		#2d2d2d	#2d2d2d #dcdcdc #2d2d2d
+client.focused          #39c6fe #39c6fe #282828 #39c6fe
+client.focused_inactive #39c6fe #282828 #dcdcdc #282828
+client.unfocused        #39c6fe #1d2021 #dcdcdc #282828
+client.urgent           #cc241d #cc241d #dcdcdc #cc241d
+client.placeholder		#2d2d2d	#2d2d2d #dcdcdc #2d2d2d
+
 
 
 # == KEYBINDS ==
 # ==============
 
-# open apps. NOTE: make sure the name option for your chosen terminal emulator is correct!
+# open apps
 bindsym $mod+Return exec $term
+bindsym $mod+u exec $term
 bindsym $mod+Shift+Return exec $term --name __scratchpad
-bindsym $mod+a exec audacious
+bindsym $mod+Shift+u exec $term --name __scratchpad
 bindsym $mod+e exec thunar
 bindsym $mod+l exec --no-startup-id $HOME/scripts/lock.sh
-bindsym $mod+m exec thunderbird, workspace 9
+# bindsym $mod+m exec thunderbird, workspace 9
 bindsym $mod+w exec firefox
 
-# media mode: using Chrom(e/ium), put YouTube into fullscreen and execute this. Thanks Airblader! Wish it worked with Firefox though.
-# Values set for 1366x768 laptop since I have 2 screens on my desktop and thus don't really need it there.
-#bindsym $mod+y fullscreen disable; floating enable; resize set 300 200; sticky enable; move window to position 1060 6
+# audiobar
+#bindsym $mod+a exec exec $HOME/scripts/bartoggle
 
-# dmenu2 - NOTE: dmenu2, not normal dmenu!
-# 1366x768
-#bindsym $mod+d exec --no-startup-id dmenu_run -i -nb \#2b303b -nf \#dcdcdc -sb \#dcdcdc -sf \#2b303b -dim 0.6 -fn "Source Code Pro-10:normal" -p "run:" -l 7 -h 16 -x 800 -y 600 -w 960
-# 2560x1440
-bindsym $mod+d exec --no-startup-id dmenu_run -i -nb \#2b303b -nf \#dcdcdc -sb \#dcdcdc -sf \#2b303b -dim 0.6 -fn "Source Code Pro-12:normal" -p "run:" -l 9 -h 16 -x 800 -y 600 -w 960
+# media mode: using Chrom(e/ium), put YouTube into fullscreen and execute this. Thanks Airblader! Wish it worked with Firefox though.
+# bindsym $mod+y fullscreen disable; floating enable; resize set 300 200; sticky enable; move window to position 1060 6
+
+bindsym $mod+d exec rofi -show drun
 
 # kill stuff
 bindsym $mod+q kill
-bindsym $mod+Shift+q kill
+#bindsym $mod+Shift+q kill
 
 # change focus
 bindsym $mod+Left focus left
@@ -175,30 +159,16 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # My laptop is so cheap, it doesn't have a caplock LED - so I need a capslock indicator in my i3blocks.
-bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
+# bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 
 # volume stuff
-#bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+12 i3blocks
-#bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+12 i3blocks
-#bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+12 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+12 i3blocks
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+12 i3blocks
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+12 i3blocks
 
-bindsym XF86AudioLowerVolume exec pactl set-sink-mute 1 false && pactl set-sink-volume 1 -5% && pkill -RTMIN+12 i3blocks
-bindsym XF86AudioRaiseVolume exec pactl set-sink-mute 1 false && pactl set-sink-volume 1 +5% && pkill -RTMIN+12 i3blocks
-bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle && pkill -RTMIN+12 i3blocks
 
 # == MODES ==
 # ###########
-
-# NOTE:
-# I route the name of modes into the .i3mode file because I used to use lemonbar and lemonbuddy.
-# These didn't have i3 mode support so I just implemented a text block that reads the .i3mode
-# file. Simple enough.
-# lemonbuddy however is now its own bar called polybar which is pretty popular on /r/unixporn
-# right now so I'll leave the commands in here, expecting that polybar works similarly to
-# how lemonbuddy did. Might be useful, and doesn't hurt to be left in since all it does is
-# create a text file that's useless to anything else.
-# If you don't need this (or polybar has i3 mode support), feel free to delete all the
-# "exec echo" commands.
 
 # RESIZE MODE
 mode "resize" {
@@ -210,7 +180,7 @@ mode "resize" {
 	bindsym Return mode "default", exec echo "" > $HOME/.i3mode
 	bindsym Escape mode "default", exec echo "" > $HOME/.i3mode
 }
-bindsym $mod+r exec echo "resize" > $HOME/.i3mode, mode "resize"
+bindsym $mod+r mode "resize"
 
 # SETTINGS MODE
 set $settings "settings: (a) audio (l) lxappearance (p) power management (w) wifi (x) xfce settings manager"
@@ -224,7 +194,7 @@ mode $settings {
 	bindsym Return mode "default", exec echo "" > $HOME/.i3mode
 	bindsym Escape mode "default", exec echo "" > $HOME/.i3mode
 }
-bindsym $mod+x exec echo $settings > $HOME/.i3mode, mode $settings
+bindsym $mod+x mode $settings
 
 # POWER MODE
 set $power "power: (l) logout (s) shutdown (r) reboot"
@@ -236,7 +206,7 @@ mode $power {
 	bindsym Return exec echo "" > $HOME/.i3mode, mode "default"
 	bindsym Escape exec echo "" > $HOME/.i3mode, mode "default"
 }
-bindsym $mod+p exec echo $power > $HOME/.i3mode, mode $power
+bindsym $mod+p mode $power
 
 # OUTER GAPS MODE
 set $mode_gaps_outer "outer gaps: (+/-) resize (0) none (d) default"
@@ -249,7 +219,7 @@ mode $mode_gaps_outer {
 	bindsym Return	exec echo "" > $HOME/.i3mode, mode "default"
 	bindsym Escape	exec echo "" > $HOME/.i3mode, mode "default"
 }
-bindsym $mod+o mode $mode_gaps_outer, exec echo $mode_gaps_outer > $HOME/.i3mode
+bindsym $mod+o mode $mode_gaps_outer
 
 # INNER GAPS MODE
 set $mode_gaps_inner "inner gaps: (+/-) resize (0) none (d) default"
@@ -262,66 +232,27 @@ mode $mode_gaps_inner {
 	bindsym Return	exec echo "" > $HOME/.i3mode, mode "default"
 	bindsym Escape	exec echo "" > $HOME/.i3mode, mode "default"
 }
-bindsym $mod+i mode $mode_gaps_inner, exec echo $mode_gaps_inner > $HOME/.i3mode
+bindsym $mod+i mode $mode_gaps_inner
 
-# SCREENS MODE
-# comment this mode if you don't have multiple screens, and swap in your own xrandr scripts if you do
-set $screens "screens: (s) single screen (d) dual screens"
-mode $screens {
-	bindsym s		exec $HOME/.screenlayout/single.sh, exec echo "" > $HOME/.i3mode, mode "default"
-	bindsym d		exec $HOME/.screenlayout/default.sh, exec echo "" > $HOME/.i3mode, mode "default"
-
-	bindsym Return	exec echo "" > $HOME/.i3mode, mode "default"
-	bindsym Escape	exec echo "" > $HOME/.i3mode, mode "default"
-}
-bindsym $mod+s mode $screens, exec echo $screens > $HOME/.i3mode
-
-
-
-# == BAR ==
-# =========
-
-#bar {
-#	# start i3bar in transparency mode, use RRGGBBAA colors!
-#	i3bar_command i3bar -t
-#	status_command i3blocks
-#	position bottom
-#	font pango:Source Code Pro, FontAwesome 12
-#	separator_symbol "■"
-#	height 30
-#
-#	colors {
-#		background	#00000000
-#		statusline	#dcdcdcff
-#		separator	#00000000
-#
-#		#colorclass			border		backgr		text
-#		focused_workspace	#00000000	#00000000	#dcdcdcff
-#		active_workspace	#00000000	#00000000	#7c6f64ff
-#		inactive_workspace	#00000000	#00000000	#7c6f64ff
-#		urgent_workspace	#00000000	#00000000	#fb4934ff
-#		binding_mode		#00000000	#dcdcdcff	#262626ff
-#	}
-#}
 
 # == AUTOSTART ==
 # ===============
 
-# compositing and window border glow (which is really just a colored shadow)
+# DESKTOP
+
+exec --no-startup-id ~/.screenlayout/dual.sh
 exec --no-startup-id compton --shadow-exclude '!focused'
-
-# fix monitor settings because they're always screwed up at login
-exec --no-startup-id $HOME/.screenlayout/default.sh
-
-# polybar
-exec_always --no-startup-id $HOME/bin/polybar.sh
-
-# other stuff
-exec --no-startup-id nm-applet
+exec_always --no-startup-id $HOME/scripts/barstart
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id xfsettingsd
 exec --no-startup-id dunst
+exec_always feh --bg-fill $HOME/.wallpapers/ocean.jpg
 
-# this script sets a wallpaper based on battery level, for my laptop
+# LAPTOP
+
+# the wallpaper script sets a wallpaper based on battery level
 #exec --no-startup-id $HOME/scripts/wallpaper.sh
-exec_always --no-startup-id feh --bg-fill $HOME/.wallpapers/ocean.jpg
+#exec --no-startup-id compton --shadow-exclude '!focused'
+#exec_always --no-startup-id $HOME/scripts/barstart
+#exec --no-startup-id xfce4-power-manager
+#exec --no-startup-id dunst
+#exec --no-startup-id nm-applet
