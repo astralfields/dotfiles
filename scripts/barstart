@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+# barstatus=$(cat $HOME/.barstatus)
+
+killall -q polybar
+while pgrep -x polybar >/dev/null; do sleep 1; done
+
+# counterpart to this is in the i3 config.
+# i3 sets the barstatus file via keybind, this script reads it.
+# This is done so the status of the bottom bar is kept through reboots or config reloads.
+# Disabled because I always use the bottom bar now, but I'm keeping it in case I want to re-enable it.
+
+#if [[ $barstatus = "1" ]]; then
+#	polybar bottom &
+#fi
+
+polybar top &
+polybar bottom &

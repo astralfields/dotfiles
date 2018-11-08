@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+barstatus=$(cat $HOME/.barstatus)
+
+if [[ $barstatus = "0" ]]; then
+	echo 1 > $HOME/.barstatus
+	notify-send "Bottom bar started" "Please wait a few seconds..."
+	polybar bottom &
+else
+	echo 0 > $HOME/.barstatus
+	notify-send "Bottom bar killed" "Restarting polybar, please wait..."
+	$HOME/scripts/barstart
+fi
