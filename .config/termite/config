@@ -3,9 +3,8 @@ audible_bell = false
 browser = firefox
 clickable_url = true
 dynamic_title = true
-font = Source Code Pro 10
-;font = Misc Termsyn 12
-;font = SauceCodePro Nerd Font Mono Semibold 10
+;font = Source Code Pro 10
+font = Misc Termsyn 12
 scrollback_lines = 99999
 scroll_on_keystroke = true
 scroll_on_output = false
@@ -13,53 +12,85 @@ urgent_on_bell = true
 mouse_autohide = true
 allow_bold = true
 
+# Nord theme
+# https://github.com/arcticicestudio/nord-termite
 
 [colors]
+cursor = #d8dee9
+cursor_foreground = #2e3440
 
-foreground          = #c0c5ce
-foreground_bold     = #dfe1e8
-cursor              = #dfe1e8
-cursor_foreground   = #2b303b
-background          = rgba(43, 48, 59)
+foreground = #d8dee9
+foreground_bold = #d8dee9
+background = #2e3440
 
-# 16 color space
+highlight = #4c566a
 
-# Black, Gray, Silver, White
-color0  = #2b303b
-color8  = #65737e
-color7  = #c0c5ce
-color15 = #eff1f5
-
-# Red
+color0  = #3b4252
 color1  = #bf616a
-color9  = #bf616a
-
-# Green
 color2  = #a3be8c
-color10 = #a3be8c
-
-# Yellow
 color3  = #ebcb8b
-color11 = #ebcb8b
-
-# Blue
-color4  = #8fa1b3
-color12 = #8fa1b3
-
-# Purple
+color4  = #81a1c1
 color5  = #b48ead
+color6  = #88c0d0
+color7  = #e5e9f0
+color8  = #4c566a
+color9  = #bf616a
+color10 = #a3be8c
+color11 = #ebcb8b
+color12 = #81a1c1
 color13 = #b48ead
+color14 = #8fbcbb
+color15 = #eceff4
 
-# Teal
-color6  = #96b5b4
-color14 = #96b5b4
 
-# Extra colors
-color16 = #d08770
-color17 = #ab7967
-color18 = #343d46
-color19 = #4f5b66
-color20 = #a7adba
-color21 = #dfe1e8
+# base16 ocean theme
+
+#[colors]
+#
+#foreground          = #c0c5ce
+#foreground_bold     = #dfe1e8
+#cursor              = #dfe1e8
+#cursor_foreground   = #2b303b
+#background          = rgba(43, 48, 59)
+#
+## 16 color space
+#
+## Black, Gray, Silver, White
+#color0  = #2b303b
+#color8  = #65737e
+#color7  = #c0c5ce
+#color15 = #eff1f5
+#
+## Red
+#color1  = #bf616a
+#color9  = #bf616a
+#
+## Green
+#color2  = #a3be8c
+#color10 = #a3be8c
+#
+## Yellow
+#color3  = #ebcb8b
+#color11 = #ebcb8b
+#
+## Blue
+#color4  = #8fa1b3
+#color12 = #8fa1b3
+#
+## Purple
+#color5  = #b48ead
+#color13 = #b48ead
+#
+## Teal
+#color6  = #96b5b4
+#color14 = #96b5b4
+#
+## Extra colors
+#color16 = #d08770
+#color17 = #ab7967
+#color18 = #343d46
+#color19 = #4f5b66
+#color20 = #a7adba
+#color21 = #dfe1e8
 
 ; vim:ft=dosini

@@ -1,9 +1,8 @@
 # Ocean v2
 
-![temp-screenshot](http://i.imgur.com/dUXJ6tT.png)
+![temp-screenshot](https://i.imgur.com/g0AN1Bx.png)
 
-This is what the theme currently looks like, but I have changes planned.
-Check the TODO list at the bottom.
+WIP screenshot. Still got a few things to change and add later.
 
 # Requirements
 
@@ -16,26 +15,27 @@ I use the i3-gaps "next" branch but the stable branch should work too. Not gonna
 
 ## Other software you may want
 
-...because I include configs and scripts for them:
-
 - dunst
 - i3lock
-- vim
 
-I am also currently using xfce4-power-manager. That's because my laptop uses some
-arcane technology which makes the screen brightness buttons very difficult to work
-with, but Xfce's power manager can do it somehow.
+## Other resources
 
-## How do I copy this?
+- colorscheme: [Nord](https://github.com/arcticicestudio/nord)
+- GTK theme: [Arc-Dark](https://github.com/horst3180/Arc-theme)
+- Icons: [Moka icon theme](http://snwh.org/moka/download/moka-icon-theme)
+- Font: termsyn
 
-Basic setup:
+On Arch, you can install all these, including the Nord theme for vim and plugins, from the AUR.
 
-- `git clone` this repo into your home directory
-- run the `dotfiles-apply` scripts in $HOME/scripts/ (NB: doesn't exist yet!)
-- install the [Base16](https://github.com/chriskempson/base16) Ocean theme for everything you need (editor, shell, terminal)
-- install GTK theme: [Arc-Darker](https://github.com/horst3180/Arc-theme)
-- install icons: [Moka icon theme](http://snwh.org/moka/download/moka-icon-theme)
+# TODO
 
+In order of significance:
+
+- [x] find a better colorscheme because base16-ocean just doesn't fit that well
+- [ ] improve dunst config
+- [ ] setup mpd/ncmpcpp
+- [ ] rice zathura
+- [ ] maybe make a midnightcommander theme?
 
 # Disclaimer
 
@@ -46,17 +46,22 @@ Please pretend that the MIT license applies to all files in this repository. I d
 with them - share, copy, modify, whatever. Just don't post them elsewhere and say you made them. I use
 material from other people too, so I don't want to actually apply a license.
 
-# Credits
+# Acknowledgments
 
 Github usernames.
 
-- Airblader - author of i3-gaps, and I stole some parts of his configs.
-- emkay443 - helped with some scripts (I can't bash).
+- Airblader - author of i3-gaps, and I stole some parts of his configs
+- adi1090x - master of rice whom I stole some configs from. Has an incredible i3 rice, check it out!
+- emkay443 - a friend who helped me with bash
+- lokesh-krishna - for the Nord theme for rofi
 
-# TODO
+# Trivia
 
-In order of significance:
-
-- [ ] write dotfiles-apply script to symlink configs to files in git folder
-- [ ] find more fitting colorscheme (muted pastels don't really fit the blue glow)
-- [ ] rice zathura
+- I use this setup by keeping this repo in a folder in my $HOME, and symlinking
+all files from their actual locations. This way I can more easily keep things up-to-date
+on both my desktop PC and laptop, since I just need to add/commit/push changed files,
+and pull on the other device. Then I just need to change comments around since a few
+things differ between my laptop and desktop setups.
+- I am also  using xfce4-power-manager. That's because my chinaware
+abomination of a laptop uses some arcane technology which makes the screen brightness buttons very difficult
+to work with, but Xfce's power manager can do it somehow. I also use it on my desktop for energy saving.

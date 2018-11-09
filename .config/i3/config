@@ -83,7 +83,7 @@ bindsym $mod+w exec firefox
 # media mode: using Chrom(e/ium), put YouTube into fullscreen and execute this. Thanks Airblader! Wish it worked with Firefox though.
 # bindsym $mod+y fullscreen disable; floating enable; resize set 300 200; sticky enable; move window to position 1060 6
 
-bindsym $mod+d exec rofi -show drun
+bindsym --release $mod+d exec rofi -show drun
 
 # kill stuff
 bindsym $mod+q kill
@@ -245,7 +245,8 @@ exec --no-startup-id compton --shadow-exclude '!focused'
 exec_always --no-startup-id $HOME/scripts/barstart
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id dunst
-exec_always feh --bg-fill $HOME/.wallpapers/ocean.jpg
+exec_always -no-startup-id feh --bg-fill $HOME/.wallpapers/ocean.jpg
+exec --no-startup-id nm-applet
 
 # LAPTOP
 
