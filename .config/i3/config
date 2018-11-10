@@ -19,7 +19,7 @@ set $default_gaps_outer 0
 
 floating_modifier $mod
 
-font pango:Source Code Pro, FontAwesome 8
+font pango:Misc Termsyn 10
 # for_window [class="^.*"] border none
 for_window [class="^.*"] border pixel 2
 
@@ -118,8 +118,8 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-# toggle sticky mode
-bindsym $mod+Shift+s sticky toggle
+# toggle sticky mode for floating window
+bindsym $mod+s sticky toggle, exec notify-send "Sticky mode toggled"
 
 # scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -158,53 +158,51 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace
 bindsym $mod+Shift+r restart
 
-# My laptop is so cheap, it doesn't have a caplock LED - so I need a capslock indicator in my i3blocks.
-# bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
-
 # volume stuff
-bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+12 i3blocks
-bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+12 i3blocks
-bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+12 i3blocks
+#bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+12 i3blocks
+#bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+12 i3blocks
+#bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+12 i3blocks
 
 
 # == MODES ==
 # ###########
 
 # RESIZE MODE
-mode "resize" {
+set $mode_resize "resize: use arrow keys"
+mode $mode_resize {
 	bindsym Left resize shrink width 5 px or 2 ppt
 	bindsym Down resize shrink height 5 px or 2 ppt
 	bindsym Up resize grow height 5 px or 2 ppt
 	bindsym Right resize grow width 5 px or 2 ppt
 
-	bindsym Return mode "default", exec echo "" > $HOME/.i3mode
-	bindsym Escape mode "default", exec echo "" > $HOME/.i3mode
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym $mod+r mode $mode_resize
 
 # SETTINGS MODE
 set $settings "settings: (a) audio (l) lxappearance (p) power management (w) wifi (x) xfce settings manager"
 mode $settings {
-	bindsym a exec pavucontrol, exec echo "" > $HOME/.i3mode, mode "default"
-	bindsym l exec lxappearance, exec echo "" > $HOME/.i3mode, mode "default"
-	bindsym p exec xfce4-power-manager-settings, exec echo "" > $HOME/.i3mode, mode "default"
-	bindsym w exec $term --name __nmtui -e nmtui, exec echo "" > $HOME/.i3mode, mode "default"
-	bindsym x exec xfce4-settings-manager, exec echo "" > $HOME/.i3mode, mode "default"
+	bindsym a exec pavucontrol, mode "default"
+	bindsym l exec lxappearance, mode "default"
+	bindsym p exec xfce4-power-manager-settings, mode "default"
+	bindsym w exec $term --name __nmtui -e nmtui, mode "default"
+	bindsym x exec xfce4-settings-manager, mode "default"
 
-	bindsym Return mode "default", exec echo "" > $HOME/.i3mode
-	bindsym Escape mode "default", exec echo "" > $HOME/.i3mode
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
 }
 bindsym $mod+x mode $settings
 
 # POWER MODE
 set $power "power: (l) logout (s) shutdown (r) reboot"
 mode $power {
-	bindsym l exec echo "" > $HOME/.i3mode, exec i3-msg exit, mode "default"
-	bindsym s exec echo "" > $HOME/.i3mode, exec systemctl poweroff, mode "default"
-	bindsym r exec echo "" > $HOME/.i3mode, exec systemctl reboot, mode "default"
+	bindsym l exec i3-msg exit, mode "default"
+	bindsym s exec systemctl poweroff, mode "default"
+	bindsym r exec systemctl reboot, mode "default"
 
-	bindsym Return exec echo "" > $HOME/.i3mode, mode "default"
-	bindsym Escape exec echo "" > $HOME/.i3mode, mode "default"
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
 }
 bindsym $mod+p mode $power
 
@@ -213,11 +211,11 @@ set $mode_gaps_outer "outer gaps: (+/-) resize (0) none (d) default"
 mode $mode_gaps_outer {
 	bindsym plus	gaps outer current plus 5
 	bindsym minus	gaps outer current minus 5
-	bindsym 0		gaps outer current set 0, exec echo "" > $HOME/.i3mode, mode "default"
-	bindsym d		gaps outer current set $default_gaps_outer, exec echo "" > $HOME/.i3mode, mode "default"
+	bindsym 0		gaps outer current set 0, mode "default"
+	bindsym d		gaps outer current set $default_gaps_outer, mode "default"
 
-	bindsym Return	exec echo "" > $HOME/.i3mode, mode "default"
-	bindsym Escape	exec echo "" > $HOME/.i3mode, mode "default"
+	bindsym Return	mode "default"
+	bindsym Escape	mode "default"
 }
 bindsym $mod+o mode $mode_gaps_outer
 
@@ -226,14 +224,24 @@ set $mode_gaps_inner "inner gaps: (+/-) resize (0) none (d) default"
 mode $mode_gaps_inner {
 	bindsym plus	gaps inner current plus 5
 	bindsym minus	gaps inner current minus 5
-	bindsym 0		gaps inner current set 0, exec echo "" > $HOME/.i3mode, mode "default"
-	bindsym d		gaps inner current set $default_gaps_inner, exec echo "" > $HOME/.i3mode, mode "default"
+	bindsym 0		gaps inner current set 0, mode "default"
+	bindsym d		gaps inner current set $default_gaps_inner, mode "default"
 
-	bindsym Return	exec echo "" > $HOME/.i3mode, mode "default"
-	bindsym Escape	exec echo "" > $HOME/.i3mode, mode "default"
+	bindsym Return	mode "default"
+	bindsym Escape	mode "default"
 }
 bindsym $mod+i mode $mode_gaps_inner
 
+# SCREENS MODE
+set $mode_screens "screens: (d) dual (s) single"
+mode $mode_screens {
+	bindsym d		exec $HOME/.screenlayout/dual.sh, mode "default"
+	bindsym s		exec $HOME/.screenlayout/single_2k.sh, mode "default"
+
+	bindsym Return	mode "default"
+	bindsym Escape	mode "default"
+}
+bindsym $mod+Shift+s mode $mode_screens
 
 # == AUTOSTART ==
 # ===============
@@ -241,18 +249,18 @@ bindsym $mod+i mode $mode_gaps_inner
 # DESKTOP
 
 exec --no-startup-id ~/.screenlayout/dual.sh
-exec --no-startup-id compton --shadow-exclude '!focused'
+exec --no-startup-id compton --shadow-exclude !focused
 exec_always --no-startup-id $HOME/scripts/barstart
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id dunst
-exec_always -no-startup-id feh --bg-fill $HOME/.wallpapers/ocean.jpg
+exec_always --no-startup-id feh --bg-fill $HOME/.wallpapers/ocean.jpg
 exec --no-startup-id nm-applet
 
 # LAPTOP
 
 # the wallpaper script sets a wallpaper based on battery level
 #exec --no-startup-id $HOME/scripts/wallpaper.sh
-#exec --no-startup-id compton --shadow-exclude '!focused'
+#exec --no-startup-id compton --shadow-exclude !focused
 #exec_always --no-startup-id $HOME/scripts/barstart
 #exec --no-startup-id xfce4-power-manager
 #exec --no-startup-id dunst
