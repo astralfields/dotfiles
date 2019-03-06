@@ -48,13 +48,8 @@ assign [class="(?i)thunderbird"] workspace 9
 # == COLORS ==
 # ============
 
-# class                 border  backgr. text    indicator
-#client.focused          #262626 #262626 #ebdbb2 #262626
-#client.focused_inactive #262626 #262626 #ebdbb2 #262626
-#client.unfocused        #1d2021 #1d2021 #ebdbb2 #1d2021
-#client.urgent           #fb4934 #fb4934 #1d2021 #fb4934
-
 # Ocean v2 colors
+
 # class                 border  backgr. text    indicator
 client.focused          #39c6fe #39c6fe #282828 #39c6fe
 client.focused_inactive #39c6fe #282828 #dcdcdc #282828
@@ -76,9 +71,7 @@ bindsym $mod+e exec thunar
 bindsym $mod+l exec --no-startup-id $HOME/scripts/lock.sh
 # bindsym $mod+m exec thunderbird, workspace 9
 bindsym $mod+w exec firefox
-
-# audiobar
-#bindsym $mod+a exec exec $HOME/scripts/bartoggle
+# (I use mod+u for my laptop, because its Return key is broken...)
 
 # media mode: using Chrom(e/ium), put YouTube into fullscreen and execute this. Thanks Airblader! Wish it worked with Firefox though.
 # bindsym $mod+y fullscreen disable; floating enable; resize set 300 200; sticky enable; move window to position 1060 6
@@ -158,10 +151,10 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace
 bindsym $mod+Shift+r restart
 
-# volume stuff
-#bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+12 i3blocks
-#bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+12 i3blocks
-#bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+12 i3blocks
+# volume stuff - doesn't quite work, left in for later tinkering. Not using it anyway because I control volume with an external DAC
+#bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%-
+#bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+
+#bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle
 
 
 # == MODES ==
@@ -249,11 +242,13 @@ bindsym $mod+Shift+s mode $mode_screens
 # DESKTOP
 
 exec --no-startup-id ~/.screenlayout/dual.sh
-exec --no-startup-id compton --shadow-exclude !focused
+exec_always --no-startup-id $HOME/scripts/compton_restart
+#exec_always --no-startup-id compton --shadow-exclude !focused
 exec_always --no-startup-id $HOME/scripts/barstart
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id dunst
 exec_always --no-startup-id feh --bg-fill $HOME/.wallpapers/ocean.jpg
+#exec_always --no-startup-id feh --bg-fill $HOME/.wallpapers/fern.jpg
 exec --no-startup-id nm-applet
 
 # LAPTOP
