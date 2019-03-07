@@ -1,6 +1,6 @@
 # Ocean v2
 
-![temp-screenshot](https://i.imgur.com/g0AN1Bx.png)
+![temp-screenshot](https://i.imgur.com/zhfjpmP.png)
 
 WIP screenshot. Still got a few things to change and add later.
 
