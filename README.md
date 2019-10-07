@@ -1,40 +1,43 @@
 # Ocean v2
 
+An improvement upon a sad little setup whose only redeeming feature was glowy window borders, which were relatively unknown in tiling WMs at the time I created it.
+
 ![temp-screenshot](https://i.imgur.com/zhfjpmP.png)
 
-WIP screenshot. Still got a few things to change and add later.
+(WIP screenshot)
 
-# Requirements
+# Requirements and suggestions
 
-- [i3-gaps](https://github.com/Airblader/i3)
-- [polybar](https://github.com/jaagr/polybar)
-- terminal emulator with 256 colors and Unicode support (configs provided for termite and rxvt-unicode)
-- compton
+| Tool or resource | Description | Why do I use it? | Alternatives (if applicable) |
+| --- | --- | --- | --- |
+| [i3-gaps](https://github.com/Airblader/i3) | Fork of i3wm with useless gaps and other things | Because it's my favorite wm | Any wm you want to make your own configs for because I'm not helping with that. |
+| [polybar](https://github.com/jaagr/polybar) | Creates bars to display system information, highly configurable | polybar is amazing and basically the centerpiece of this setup | *(none)* |
+| [Nord](https://github.com/arcticicestudio/nord) colorscheme | Popular colorscheme for terminals and CLI software | Looks nice and I haven't found anything that would fit this rice better | I cannot recommend anything but Nord, unless you want to deal with recoloring the polybar setup. If you want to do that... good luck and have fun. |
+| termite | Simple terminal emulator designed for use with tiling wms | It's simple and does everything I need | The Nord colorscheme requires any terminal emulator with 256 color support. Configs for **rxvt-unicode** (urxvt) are provided. |
+| compton | Compositor that enables blur effects, transparency, simple animations and window shadows | The glowy border around active windows is a colored window shadow, which can only be created by a compositor. | ? |
+| xfce4-power-manager | Manages battery, power, and screen backlighting | I need it for my laptop because it's the only way I can easily use the arcane screen backlight technology this cheap chinaware monstrosity has | ? |
+| dunst | Makes simple notification popups | Again, it's simple and does everything I need | ? |
+| i3lock | A very simple screen locker | ditto | Any other screen locker |
+| imagemagick | Provides CLI image manipulation utilities | Required to set a dynamic background for i3lock | *(none)* |
+| vim | A fast and efficient text editor based on modes | #vimmasterrace | emacs :\^) |
+| Arch Linux | A simple, lightweight GNU/Linux distribution | I use Arch btw | Hannah Montana Linux |
 
 I use the i3-gaps "next" branch but the stable branch should work too. Not gonna test it, you're on your own.
 
-## Other software you may want
+## Fonts
 
-- dunst
-- i3lock
-
-## Other resources
-
-- colorscheme: [Nord](https://github.com/arcticicestudio/nord)
-- GTK theme: [Arc-Dark](https://github.com/horst3180/Arc-theme)
-- Icons: [Moka icon theme](http://snwh.org/moka/download/moka-icon-theme)
-- Fonts: termsyn, Wuncon Siji, scientifica (optionally), FuraCode Nerd Font Mono (or any other monospace Nerd Font,
-or any font that includes a ton of unicode glyphs - FontAwesome may work too)
-
-On Arch, you can install all these, including the Nord theme for vim and plugins, from the AUR.
-
-I also recommend installing the full Nerd Fonts package.
+| Font name | Usage | Alternative(s)
+| --- | --- | --- |
+| termsyn | Main font | scientifica (especially on smaller displays - I use it on my laptop)
+| Siji | Symbol font used in polybar | *(none)* |
+| FuraCode Nerd Font Mono | Used for additional symbols, especially powerline glyphs, in polybar | Any other monospace font from the Nerd Fonts project |
+| Adobe Source Code Pro | optional; my personal choice of non-pixel monospace font for use in terminals on high-resolution displays | whatever you like
 
 # TODO
 
 In order of significance:
 
-- [x] find a better colorscheme because base16-ocean just doesn't fit that well
+- [x] find a better colorscheme because base16-ocean just doesn't fit that well (now using Nord!)
 - [x] improve polybar config
 - [ ] improve dunst config
 - [ ] setup mpd/ncmpcpp
