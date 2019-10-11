@@ -8,8 +8,23 @@
 ;=====================================================
 
 
-; NB: Don't worry if there are weird symbols, the Siji font displays different ones. It will look correct in the bar but wrong in your editor.
-; Also, all the label texts are a total mess because colors and fonts need to be changed inline. Suck it up. ;)
+; * a lot
+;
+; ============================
+;      NOTES
+; ============================
+;
+; Don't worry if there are weird symbols, the Siji font displays different ones.
+; It will look correct in the bar but wrong in your editor. Also, this is a total
+; hack. It's an attempted copy and subsequent edit of a certain reddit user's
+; setup (said user does not exist anymore). It doesn't look entirely the same -
+; mainly margins and spacings are too large and I have absolutely no idea how
+; to make them smaller - but it's close enough. I like it the way it is.
+;
+; Oh and, there may be some subpixel glitches with powerline glyphs. I have
+; tried to fix it for days and eventually given up.
+;
+; Fonts are black magic as far as I'm concerned. Best to not touch them.
 
 
 [colors]
@@ -28,7 +43,8 @@ alert2 = #ebcb8b
 ;==============================
 
 [bar/top]
-; comment this line on laptop
+; CHANGE THIS LINE TO FIT YOUR SETUP
+; comment or delete it if you only have 1 screen
 monitor = ${env:MONITOR:DP-4.8}
 
 width = 100%
@@ -51,11 +67,11 @@ padding-right = 0
 module-margin-left = 0
 moduled-margin-right = 0
 
-font-0 = "FuraCode Nerd Font Mono:size=22;3"
+font-0 = "FuraCode Nerd Font Mono:antialias=false:size=22;3"
 font-1 = "Misc Termsyn:size=12;2"
 ;font-1 = "scientifica:size=12;2"
-font-2 = "Wuncon Siji:size=12;2"
-font-3 = FontAwesome:size=8;2
+font-2 = "Siji:pixelsize=12;2"
+font-3 = "FuraCode Nerd Font Mono:antialias=false:size=6;3"
 
 ; desktop PC modules
 modules-left = menu i3 xwindow
@@ -109,13 +125,16 @@ tray-padding = 4
 ;tray-transparent = true
 tray-background = ${colors.background-alt}
 
-font-0 = "FuraCode Nerd Font Mono:style=medium:size=22;3"
+font-0 = "FuraCode Nerd Font Mono:antialias=false:size=22;3"
 font-1 = "Misc Termsyn:size=12;3"
 ;font-1 = "scientifica:size=12;3"
-font-2 = "Wuncon Siji:size=12;3"
+font-2 = "Siji:pixelsize=12;3"
+#font-2 = "Wuncon Siji:size=12;3"
 font-3 = FontAwesome:size=8;3
-font-4 = "FuraCode Nerd Font Mono:style=medium:size=6;3"
-;NOTE: if you specify font 2 in a module, like %{T2}, it will use font-1. That's just how polybar works.
+font-4 = "FuraCode Nerd Font Mono:antialias=false:size=6;3"
+; NOTE: if you specify font 2 in a module, like %{T2}, it will use font-1. That's just how polybar works.
+; Also, I didn't need to use FontAwesome here since Nerd Fonts contain all FontAwesome glyphs.
+; However, removing FA means I'd have to change all the modules so I'm not doing that.
 
 ; modules
 modules-left = musictext mpd volume
@@ -139,23 +158,23 @@ label-layout = %{F#3b4252}%{T2}%layout%%{F#81a1c1 B-}
 format-underline = ${colors.background}
 format-overline = ${colors.background}
 
-label-indicator = "%{F#bf616a}%{T3}%{F#3b4252 B#bf616a}%name% %{T1}%{F#bf616a B-}"
+label-indicator-on = "%{F#bf616a}%{T3}%{F#3b4252 B#bf616a}%name% %{T1}%{F#bf616a B-}"
 label-indicator-padding = 1
 label-indicator-margin = 0
 label-indicator-background = ${colors.background}
 label-indicator-underline = ${colors.background}
 
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
-format-overline = ${colors.background}
-format-underline = ${colors.background}
+;[module/filesystem]
+;type = internal/fs
+;interval = 25
+;
+;mount-0 = /
+;
+;label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+;label-unmounted = %mountpoint% not mounted
+;label-unmounted-foreground = ${colors.foreground-alt}
+;format-overline = ${colors.background}
+;format-underline = ${colors.background}
 
 [module/i3]
 type = internal/i3
@@ -380,18 +399,18 @@ format-connected-overline = ${colors.background}
 format-connected-underline = ${colors.background}
 
 [module/volume]
+; CHANGE THESE SETTINGS TO FIT YOUR SYSTEM
 type = internal/pulseaudio
 sink = alsa_output.usb-iFi__by_AMR__iFi__by_AMR__HD_USB_Audio-00.analog-stereo
 use-ui-max = false
-# unreleased feature, enable once available
-#interval = 5
 
-format-volume = <label-volume><bar-volume>
+format-volume = <bar-volume><label-volume>
 format-volume-prefix = %{F#88c0d0 B-}%{R}%{F#88c0d0 B#81a1c1}
 format-volume-prefix-foreground = ${colors.foreground}
 format-volume-suffix = 
 format-volume-suffix-foreground = ${colors.background-alt}
-label-volume = "%{T2}%percentage%% "
+format-volume-suffix-background = ${colors.background}
+label-volume = "%{F#2b303b B#81a1c1}%{T2} %percentage%%"
 label-volume-foreground = ${colors.background}
 
 format-muted-prefix = " "

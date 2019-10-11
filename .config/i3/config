@@ -10,7 +10,7 @@
 set $mod Mod4
 set $term termite
 
-set $default_gaps_inner 15
+set $default_gaps_inner 20
 set $default_gaps_outer 0
 
 
@@ -19,7 +19,7 @@ set $default_gaps_outer 0
 
 floating_modifier $mod
 
-font pango:Misc Termsyn 10
+font Termsyn 10
 # for_window [class="^.*"] border none
 for_window [class="^.*"] border pixel 2
 
