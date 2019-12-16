@@ -1,0 +1,286 @@
+#!/bin/bash
+# Screenshot Imgur Upload Script
+#
+# Takes a screenshot (desktop, active window, area) after a little pause
+# and uploads it to imgur (optionally) and copies the image's URL to the clipboard (optionally)
+#
+# Dependencies: scrot, curl, zenity, xclip, sox, libnotify-bin
+#
+# Author: Michael Koch (m<DOT>koch<AT>emkay443<DOT>de)
+# Version: 2016-07-18_1
+# License: GNU General Public License v3 (http://www.gnu.de/documents/gpl-3.0.en.html)
+#
+# Changelog at the end of the script
+
+###################
+## CONFIGURATION ##
+###################
+
+# imgur client id (get it from https://api.imgur.com)
+client_id="88d8b28bbe0fb27"
+
+# get XDG variables
+. $HOME/.config/user-dirs.dirs
+
+# scrot binary file path
+scrot_cmd="/usr/bin/scrot"
+
+# xclip binary file path
+clipboard_enabled=true
+xclip_cmd="/usr/bin/xclip"
+
+# notify-send binary file path
+notification_enabled=true
+notification_cmd="/usr/bin/notify-send"
+
+# Command to play the given sound file on success
+sound_enabled=true
+sound_cmd="/usr/bin/play"
+sound_file="/usr/share/sounds/freedesktop/stereo/complete.oga"
+
+# Enable the following option if you want to have a symlink to your screenshots folder on your desktop
+link_on_desktop_enabled=false
+desktop_path="$XDG_DESKTOP_DIR"
+
+# Screenshot file extension (must be compatible)
+file_extension="png"
+file_basedir="$XDG_PICTURES_DIR/screenshots"
+
+# Pause time in seconds before a screenshot is aken
+# Useful for taking screenshots of opened menues
+sleep_time="0.2"
+#sleep_time="5"
+
+# Resolution and offset for display mode
+resolution="2560x1440+0+120"
+
+# Enable to draw a "black box" in desktop mode if you use two monitors with different resolutions
+# Position and size of black box (xpos,ypos width,height))
+desktop_black_box_enabled=true
+desktop_black_box_coords="0,0 1920,120"
+
+# Disable the following option
+# if you don't want to paste the screenshot's URL to the specified upload log
+uploadlog_enabled=true
+uploadlog_file_name="imgur-upload.txt"
+
+copy_to_clipboard_enabled=true
+
+# Command line option names
+option_type_desktop="--desktop"
+option_type_window="--window"
+option_type_area="--area"
+option_type_display="--display"
+option_no_upload="--no-upload"
+option_force_upload="--force-upload"
+option_no_save="--no-save"
+option_no_delay="--no-delay"
+
+#########################################################################################
+# WARNING: You should be careful when changing any code below. Modify at your own risk! #
+#########################################################################################
+
+######################
+## HELPER FUNCTIONS ##
+######################
+
+function printParmError {
+	echo -e "Usage: $0 <TYPE> [OPTIONS]"
+	echo -e "The screenshot's type can be one of the following:"
+	echo -e "$option_type_desktop\tTakes a screenshot of the full desktop"
+	echo -e "$option_type_window\tTakes a screenshot of the activated window"
+	echo -e "$option_type_area\t\tTakes a screenshot of a user-selected area"
+	echo
+	echo -e "These options are also possible:"
+	echo -e "$option_no_upload\tDon't ask for upload, just save to disk"
+	echo -e "$option_force_upload\tDon't ask for upload, always upload"
+	echo -e "$option_no_save\tDon't save the image on disk"
+	echo -e "\t(the above option doesn't make sense together with --no-upload)"
+	echo -e "$option_no_delay\tDisables the delay before taking a screenshot"
+	exit 1
+}
+
+function parse_json() {
+	echo $1 | \
+	sed -e 's/[{}]/''/g' | \
+	sed -e 's/", "/'\",\"'/g' | \
+	sed -e 's/" ,"/'\",\"'/g' | \
+	sed -e 's/" , "/'\",\"'/g' | \
+	sed -e 's/","/'\"---SEPERATOR---\"'/g' | \
+	awk -F=':' -v RS='---SEPERATOR---' "\$1~/\"$2\"/ {print}" | \
+	sed -e "s/\"$2\"://" | \
+	tr -d "\n\t" | \
+	sed -e 's/\\"/"/g' | \
+	sed -e 's/\\\\/\\/g' | \
+	sed -e 's/^[ \t]*//g' | \
+	sed -e 's/^"//'  -e 's/"$//'
+}
+
+function doUpload {
+	$notification_cmd --hint=int:transient:1 "Upload" "The screenshot is being uploaded..."
+	# Try to upload the screenshot to imgur and put the results to the variable curl_response
+	curl_response=$(curl -H "Authorization: Client-ID $client_id" -F "image"=@"$file_path" https://api.imgur.com/3/upload.json);
+	echo $curl_response
+	# Print error message if errors occur
+	if [[ "$curl_response" == *overload* ]]; then
+		$notification_cmd --hint=int:transient:1 "Imgur server overloaded" "The screenshot couldn't be uploaded\nThe servers are overloaded"
+	elif [[ "$curl_response" == *404* ]]; then
+		$notification_cmd --hint=int:transient:1 "Imgur Server not reachable" "The screenshot couldn't be uploaded\nThe servers are not reachable (error 404).\nCheck your network connection"
+	elif [[ "$curl_response" == *error* ]]; then
+		$notification_cmd --hint=int:transient:1 "Imgur Server not reachable" "The screenshot couldn't be uploaded\nThe servers are not reachable (unknown error).\nCheck your network connection"
+	else
+		# Strip unneccessary stuff and put the image's URL to the clipboard
+		curl_response=$(parse_json "$curl_response" link | sed 's/\\//g')
+
+		if [ $clipboard_enabled ]; then echo $curl_response | $xclip_cmd -sel clip; fi
+
+		if [ $uploadlog_enabled ]; then
+			# If there is no upload log, create one
+			# and append the URL to it
+			if [[ ! -e "$uploadlog_path" ]]; then
+				touch "$uploadlog_path"
+			fi
+			echo -e "$file\n\n$curl_response\n\n\n" > $uploadlog_path
+		fi
+
+		# Notify the user about a successful upload
+		if [ $notification_enabled ]; then $notification_cmd --hint=int:transient:1 "Imgur Upload" "Upload was successful\n\nLink: <a href='$curl_response'>$curl_response</a>"; fi
+		if [ $sound_enabled ]; then $sound_cmd $sound_file; fi
+	fi
+}
+
+####################
+# HELPER VARIABLES #
+####################
+
+day="$(date '+%d')"
+month="$(date '+%m')"
+year="$(date '+%Y')"
+time="$(date '+%H-%M-%S')"
+
+##################
+## MAIN PROGRAM ##
+##################
+
+if [ ! -z "$1" ]; then
+	# Check screenshot type
+	case $1 in
+		"$option_type_desktop")
+			screenshot_type="desktop"
+			;;
+		"$option_type_window")
+			screenshot_type="window"
+			;;
+		"$option_type_area")
+			screenshot_type="area"
+			;;
+		"$option_type_display")
+			screenshot_type="display"
+			;;
+		*)
+			echo "Parameter error!"
+			printParmError
+			exit 1
+			;;
+	esac
+
+	# Check command-line options
+	for option in $*; do
+		if [[ $option == *$option_no_upload* ]]; then
+			no_upload=true
+		elif [[ $option == *$option_force_upload* ]]; then
+			force_upload=true
+		elif [[ $option == *$option_no_save* ]]; then
+			no_save=true
+		elif [[ $option == *$option_no_delay* ]]; then
+			no_delay=true
+		fi
+	done
+
+	# File and folder management
+	if [ $no_save ]; then
+		file_path="/tmp/screenshot-$time.$file_extension"
+		uploadlog_path="/dev/null"
+	else
+		if $link_on_desktop_enabled; then
+			ln -sf "$basepath" "$desktop_path/screenshots"
+		fi
+
+		file_dir="$file_basedir/$year/$month/$day"
+		if [[ ! -e "$file_dir" ]]; then
+			mkdir -p "$file_dir"
+		fi
+
+		unlink "$file_basedir/This Month" 2> /dev/null
+		unlink "$file_basedir/Today" 2> /dev/null
+
+		ln -s "$file_basedir/$year/$month" "$file_basedir/This Month"
+		ln -s "$file_basedir/$year/$month/$day" "$file_basedir/Today"
+
+		file_path="$file_dir/screenshot-$time.$file_extension"
+		uploadlog_path="$file_dir/$uploadlog_file_name"
+	fi
+
+	# Take the screenshot
+	if [ ! $no_delay ]; then
+		sleep $sleep_time
+	fi
+	case $screenshot_type in
+		"desktop")
+			$scrot_cmd -q 0 "$file_path"
+			if [ $desktop_black_box_enabled ]; then
+				convert "$file_path" -fill black -draw "rectangle $desktop_black_box_coords" "$file_path"
+			fi
+			;;
+		"window")
+			$scrot_cmd -u -b -q 0 "$file_path"
+			;;
+		"area")
+			$scrot_cmd -s -b -q 0 "$file_path"
+			;;
+		"display")
+			$scrot_cmd -q 0 "$file_path"
+			convert "$file_path" -crop "$resolution" "$file_path""_crop"
+			file_path="$file_path""_crop"
+			;;
+		*)
+			exit 1
+			;;
+	esac
+
+	# Upload screenshot
+	if [ ! $no_upload ]; then
+		if [ $force_upload ]; then
+			doUpload
+		elif zenity --question --text "Do you want to upload the screenshot to imgur?" --title "Question"; then
+			doUpload
+		fi
+	fi
+
+	if [ $copy_to_clipboard_enabled ]; then
+		xclip -t image/png -sel clip "$file_path"
+	fi
+
+	# Remove 
+	if [ $no_save ]; then
+		rm "$file_path"
+	fi
+
+	exit 0
+else
+	printParmError
+fi
+
+exit 0
+
+#############
+# CHANGELOG #
+#############
+# 2019-12-22	Michael Koch
+# + Added clipboard support for raw image data
+#
+# 2016-07-18	Michael Koch
+# * Fixed for API level 3
+#
+# 2013-09-10	Michael Koch
+# + Added an option to disable the delay before taking a screenshot

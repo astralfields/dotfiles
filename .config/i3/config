@@ -8,7 +8,6 @@
 # ===============
 
 set $mod Mod4
-set $term termite
 
 set $default_gaps_inner 20
 set $default_gaps_outer 0
@@ -19,7 +18,7 @@ set $default_gaps_outer 0
 
 floating_modifier $mod
 
-font Termsyn 10
+font pango:Sauce Code Pro Nerd Font 8
 # for_window [class="^.*"] border none
 for_window [class="^.*"] border pixel 2
 
@@ -40,8 +39,8 @@ for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
 
 for_window [class="Audacious"] border none
-for_window [instance="__scratchpad"] floating enable
-for_window [instance="__nmtui"] floating enable
+for_window [title="__scratchpad"] floating enable
+for_window [title="__nmtui"] floating enable
 
 assign [class="(?i)thunderbird"] workspace 9
 
@@ -63,10 +62,10 @@ client.placeholder		#2d2d2d	#2d2d2d #dcdcdc #2d2d2d
 # ==============
 
 # open apps
-bindsym $mod+Return exec $term
-bindsym $mod+u exec $term
-bindsym $mod+Shift+Return exec $term --name __scratchpad
-bindsym $mod+Shift+u exec $term --name __scratchpad
+bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+u exec xfce4-terminal
+bindsym $mod+Shift+Return exec xfce4-terminal --title=__scratchpad
+bindsym $mod+Shift+u exec xfce4-terminal --title=__scratchpad
 bindsym $mod+e exec thunar
 bindsym $mod+l exec --no-startup-id $HOME/scripts/lock.sh
 # bindsym $mod+m exec thunderbird, workspace 9
@@ -152,9 +151,12 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # volume stuff - doesn't quite work, left in for later tinkering. Not using it anyway because I control volume with an external DAC
-#bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%-
-#bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+
-#bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/scripts/volup
+bindsym XF86AudioMute exec --no-startup-id pactl -- set-sink-mute @DEFAULT_SINK@ toggle
+
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 
 # == MODES ==
@@ -179,7 +181,7 @@ mode $settings {
 	bindsym a exec pavucontrol, mode "default"
 	bindsym l exec lxappearance, mode "default"
 	bindsym p exec xfce4-power-manager-settings, mode "default"
-	bindsym w exec $term --name __nmtui -e nmtui, mode "default"
+	bindsym w exec xfce4-terminal --title=__nmtui -e nmtui, mode "default"
 	bindsym x exec xfce4-settings-manager, mode "default"
 
 	bindsym Return mode "default"
@@ -250,6 +252,7 @@ exec --no-startup-id dunst
 exec_always --no-startup-id feh --bg-fill $HOME/.wallpapers/ocean.jpg
 #exec_always --no-startup-id feh --bg-fill $HOME/.wallpapers/fern.jpg
 exec --no-startup-id nm-applet
+exec --no-startup-id pulseeffects --gapplication-service
 
 # LAPTOP
 
