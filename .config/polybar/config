@@ -77,10 +77,11 @@ module-margin-left = 2
 moduled-margin-right = 0
 
 ;font-0 = "FuraCode Nerd Font Mono:antialias=false:size=22;3"
-font-0 = "Misc Termsyn:size=12;2"
+;font-0 = "Misc Termsyn:size=12;2"
+font-0 = "Terminus:size=12;2"
 ;font-1 = "scientifica:size=12;2"
 font-1 = "Siji:pixelsize=12;2"
-font-2 = "FuraCode Nerd Font Mono:antialias=false:size=6;3"
+;font-2 = "FuraCode Nerd Font Mono:antialias=false:size=6;3"
 
 ; desktop PC modules
 modules-left = menu i3 xwindow
@@ -115,18 +116,17 @@ background = ${colors.night0}
 foreground = ${colors.snow1}
 
 line-size = 4
-line-color = #39c6fe
+line-color = ${colors.neonblue}
 
 border-size = 3
-border-color = ${colors.night0}
-border-top-color = ${colors.night1}
+border-color = ${colors.night1}
 border-bottom-size = 0
 
 padding-left = 0
 padding-right = 0
 
-module-margin-left = 0
-module-margin-right = 2
+module-margin-left = 2
+module-margin-right = 0
 module-margin-top = 0
 
 tray-position = right
@@ -134,10 +134,11 @@ tray-padding = 4
 ;tray-transparent = true
 tray-background = ${colors.night1}
 
-font-0 = "Misc Termsyn:size=12;3"
+;font-0 = "Misc Termsyn:size=12;3"
+font-0 = "Terminus:size=10;3"
 ;font-0 = "scientifica:size=12;3"
 font-1 = "Siji:pixelsize=12;3"
-font-2 = "FuraCode Nerd Font Mono:antialias=false:size=6;3"
+;font-2 = "FuraCode Nerd Font Mono:antialias=false:size=6;3"
 ; NOTE: if you specify font 2 in a module, like %{T2}, it will use font-1. That's just how polybar works.
 ; Also, I didn't need to use FontAwesome here since Nerd Fonts contain all FontAwesome glyphs.
 ; However, removing FA means I'd have to change all the modules so I'm not doing that.
@@ -426,7 +427,7 @@ sink = alsa_output.usb-iFi__by_AMR__iFi__by_AMR__HD_USB_Audio-00.analog-stereo
 use-ui-max = false
 
 format-volume = <bar-volume><label-volume>
-format-volume-prefix = "  %{B#4c566a} "
+format-volume-prefix = "  %{B#434c5e} "
 format-volume-prefix-foreground = ${colors.snow1}
 format-volume-prefix-background = ${colors.night3}
 

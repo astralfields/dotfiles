@@ -3,7 +3,7 @@
 # barstatus=$(cat $HOME/.barstatus)
 
 killall -q polybar
-while pgrep -x polybar >/dev/null; do sleep 1; done
+while pgrep -x polybar >/dev/null; do sleep 0.1; done
 
 # counterpart to this is in the i3 config.
 # i3 sets the barstatus file via keybind, this script reads it.
