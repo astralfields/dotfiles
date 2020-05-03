@@ -11,16 +11,18 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'		" required - gotta let Vundle manage Vundle
-Plugin 'bling/vim-airline'			" lightweight powerline for vim
-" Plugin 'scrooloose/nerdtree'		" file tree
-Plugin 'Xuyuanp/nerdtree-git-plugin'	" git support for nerdtree
-" Plugin 'morhetz/gruvbox'			" colorscheme
-Plugin 'chriskempson/base16-vim'	" colorschemes
+" Plugin 'vim-airline/vim-airline'	" lightweight powerline for vim
+" Plugin 'vim-airline/vim-airline-themes'
+Plugin 'itchyny/lightline.vim'
 Plugin 'jiangmiao/auto-pairs'		" spawn matching brackets/quotes
 Plugin 'bronson/vim-trailing-whitespace'	" show trailing space
 Plugin 'SirVer/ultisnips'			" code snippets
 Plugin 'honza/vim-snippets'			" snippets for ultisnips
-
+Plugin 'arcticicestudio/nord-vim'	" colorscheme
+" Plugin 'scrooloose/nerdtree'		" file tree
+" Plugin 'Xuyuanp/nerdtree-git-plugin'	" git support for nerdtree
+" Plugin 'morhetz/gruvbox'			" colorscheme
+" Plugin 'chriskempson/base16-vim'	" colorschemes
 
 call vundle#end()
 
@@ -35,35 +37,37 @@ endif
 " AIRLINE SETTINGS
 " ================
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_section=''
-let g:airline_detect_paste=1 " Show PASTE if in paste mode
-let g:airline_powerline_fonts = 1
+"let g:airline_theme='base16_ocean'
 
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline_section=''
+" let g:airline_detect_paste=1 " Show PASTE if in paste mode
+" let g:airline_powerline_fonts = 1
+"
+" if !exists('g:airline_symbols')
+"     let g:airline_symbols = {}
+" endif
+"
+" let g:airline_left_sep = '»'
+" let g:airline_left_sep = '▶'
+" let g:airline_right_sep = '«'
+" let g:airline_right_sep = '◀'
+" let g:airline_symbols.linenr = '␊'
+" let g:airline_symbols.linenr = '␤'
+" let g:airline_symbols.linenr = '¶'
+" let g:airline_symbols.branch = '⎇'
+" let g:airline_symbols.paste = 'ρ'
+" let g:airline_symbols.paste = 'Þ'
+" let g:airline_symbols.paste = '∥'
+" let g:airline_symbols.whitespace = 'Ξ'
+"
+" let g:airline_left_sep = ''
+" let g:airline_left_alt_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_right_alt_sep = ''
+" let g:airline_symbols.branch = ''
+" let g:airline_symbols.readonly = ''
+" let g:airline_symbols.linenr = ''
 
 " ULTISNIPS SETTINGS
 " ==================
@@ -76,15 +80,32 @@ let g:UltiSnipsEditSplit="vertical"
 " VIM SETTINGS
 " ===========
 
-set t_Co=256			" for 256 terminal colors
-let base16colorspace=256
-" let base16colorspace=256	" Access colors present in 256 colorspace
-" colorscheme gruvbox
-colorscheme base16-ocean
-set background=dark
-hi Normal ctermbg=none	" transparent background
-set encoding=utf-8
+colorscheme nord
+let g:nord_underline = 1
+let g:nord_italic = 1
+let g:nord_italic_comments = 1
+let g:nord_cursor_line_number_background = 1
+set laststatus=2
+set noshowmode
+" let base16colorspace=256
 
+if !has('gui_running')
+	set t_Co=256
+endif
+
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ }
+
+set background=dark
+hi Normal ctermbg=none
+
+" if filereadable(expand("~/.vimrc_background"))
+" 	let base16colorspace=256
+" 	source ~/.vimrc_background 		" this also sources colorscheme ocean
+" endif
+
+set encoding=utf-8
 set mouse=a
 set showmatch		" show matching bracket when cursor is over one
 set ttyfast		" improve redrawing
@@ -97,20 +118,20 @@ set tabstop=4
 set showcmd		" show last used command
 set wildmenu	" visual autocomplete for commands
 
-set lazyredraw	" redraw only when needed, mostly for faster macros
+" set lazyredraw	" redraw only when needed, mostly for faster macros
 
 filetype plugin indent on
 
 set nobackup		" because backup and undo files are annoying af
 
-set history=1000	" it's not 1990 anymore, we can use more than 50
+set history=9999	" it's not 1988 anymore, we can use more than 50
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 set hidden		" Leave hidden buffers open
 set number		" show line numbers
 
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
+" using Windows gVim: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
 
 " Don't use Ex mode, use Q for formatting
@@ -123,7 +144,7 @@ inoremap <C-U> <C-G>u<C-U>
 " copy content of entire file with yaf
 onoremap af :<C-u>normal! ggVG<CR>
 
-" Switch syntax highlighting on, when the terminal has colors
+" Switch syntax highlighting on if the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
   syntax on
@@ -186,3 +207,10 @@ endif
 set scrolloff=10
 set sidescrolloff=15
 set sidescroll=1
+
+
+" Custom commands
+" ===============
+
+" Saving files as sudo made easy
+cmap w!! w !sudo tee > /dev/null %

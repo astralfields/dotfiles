@@ -144,7 +144,7 @@ font-1 = "Siji:pixelsize=12;3"
 ; However, removing FA means I'd have to change all the modules so I'm not doing that.
 
 ; modules
-modules-left = musictext mpd volume
+modules-left = musictext volume mpd
 modules-center =
 modules-right = trayspacer
 

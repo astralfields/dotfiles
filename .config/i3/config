@@ -111,6 +111,10 @@ bindsym $mod+Shift+Down move down 25px
 bindsym $mod+Shift+Up move up 25px
 bindsym $mod+Shift+Right move right 25px
 
+# move workspace to monitor left/right
+bindsym $mod+Mod1+Right move workspace to output right
+bindsym $mod+Mod1+Left move workspace to output left
+
 # split
 bindsym $mod+h split h
 bindsym $mod+v split v
@@ -175,6 +179,9 @@ bindsym XF86AudioMute exec --no-startup-id pactl -- set-sink-mute @DEFAULT_SINK@
 
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+
+# auto clicker
+bindsym $mod+c exec xdotool click --repeat 500 --delay 36 1
 
 
 # == MODES ==
@@ -249,7 +256,8 @@ bindsym $mod+i mode $mode_gaps_inner
 set $mode_screens "screens: (d) dual (s) single"
 mode $mode_screens {
 	bindsym d		exec $HOME/.screenlayout/dual.sh, mode "default"
-	bindsym s		exec $HOME/.screenlayout/single_2k.sh, mode "default"
+	bindsym l		exec $HOME/.screenlayout/single_2k.sh, mode "default"
+	bindsym r		exec $HOME/.screenlayout/single_fullhd.sh, mode "default"
 
 	bindsym Return	mode "default"
 	bindsym Escape	mode "default"
