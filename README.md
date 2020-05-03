@@ -10,20 +10,20 @@ An improvement upon a sad little setup whose only redeeming feature was glowy wi
 
 # Requirements and suggestions
 
-| Tool or resource | Description | Why do I use it? | Alternatives (if applicable) |
+| Tool or resource | What is this? | Why do I use it? | Alternatives (if applicable) |
 | --- | --- | --- | --- |
 | [i3-gaps](https://github.com/Airblader/i3) | Fork of i3wm with useless gaps and other things | Because it's my favorite wm | Any wm you want to make your own configs for because I'm not helping with that. |
 | [polybar](https://github.com/jaagr/polybar) | Creates bars to display system information, highly configurable | polybar is amazing and basically the centerpiece of this setup | lemonbar if you're a masochist |
-| [Nord](https://github.com/arcticicestudio/nord) colorscheme | Popular colorscheme for terminals and CLI software | Looks nice and I haven't found anything that would fit this rice better | base16-ocean might fit?  |
+| [Nord](https://github.com/arcticicestudio/nord) colorscheme | Popular colorscheme for terminals and CLI software | Looks nice and I haven't found anything that would fit this rice better | base16-ocean isn't ugly with this setup  |
 | xfce4-terminal | Xfce's terminal emulator | It's simple and does everything I need. Mainly used because termite doesn't provide proper window titles for i3 and polybar. | The Nord colorscheme requires any terminal emulator with 256 color support. Configs for **rxvt-unicode** (urxvt) and **termite** are provided. |
 | picom | Compositor that enables blur effects, transparency, simple animations and window shadows | The glowy border around active windows is a colored window shadow, which can only be created by a compositor. | compton |
 | xfce4-power-manager | Manages battery, power, and screen backlighting | I need it for my laptop because it's the only way I can easily use the arcane screen backlight technology this cheap chinaware monstrosity has | ? |
 | dunst | Makes simple notification popups | Again, it's simple and does everything I need | ? |
 | i3lock | A very simple screen locker | ditto | Any other screen locker |
-| imagemagick | Provides CLI image manipulation utilities | Required to set a dynamic background for i3lock | *(none)* |
-| vim | A fast and efficient text editor based on modes | #vimmasterrace | emacs :\^) |
-| zsh | cool shell | It's just better than bash | Whatever you prefer |
-| [grml-zsh-config](https://grml.org/zsh/) | Not a program, but a very extensive zsh configuration | Not required, I just like it | `NULL`
+| imagemagick | Provides CLI image manipulation utilities | Required to set a dynamic background for i3lock | ? |
+| vim | A fast and efficient modal text editor | #vimmasterrace | emacs :\^) |
+| zsh | Z shell | It's just better than bash | Whatever you prefer. fish is cool. |
+| [grml-zsh-config](https://grml.org/zsh/) | A very extensive zsh configuration | Not required, I just like it | N/A
 | Arch Linux | A simple, lightweight GNU/Linux distribution | I use Arch btw | Install Gentoo |
 
 I use the i3-gaps "next" branch but the stable branch should work too. Not gonna test it, you're on your own.
@@ -39,7 +39,7 @@ I use the i3-gaps "next" branch but the stable branch should work too. Not gonna
 
 In order of significance:
 
-- [ ] improve polybar config
+- [x] improve polybar config
 - [ ] improve dunst config
 - [ ] setup mpd/ncmpcpp
 - [ ] rice zathura
@@ -73,14 +73,11 @@ I currently use this setup by keeping this repo in a folder in my $HOME, and sym
 all files from their actual locations. This way I can more easily keep things up-to-date
 on both my desktop PC and laptop, since I just need to add/commit/push changed files,
 and pull on the other device. Then I just need to change comments around since a few
-things differ between my laptop and desktop setups. (A more elegant way of doing this would be making
+things differ between my laptop and desktop setups.
+
+(A more elegant way of doing this would be making
 my entire home folder a git repo and taking care of include/exclude files... but I'm not a programmer,
 I literally only use git to sync this rice, and in the spirit of "don't fix what's not broken"
 I have no intention of changing it.)
 
-*Constructive* criticism concerning my rice is very welcome.
-
-Criticism, constructive as it may be, concerning my methods, writing style, formatting etc. will more than
-likely fall on deaf ears. I have no interest in "doing things the right way".
-I just want things to work, and as I am not a programmer, you will not
-have to deal with my atrocities anywhere but in this exact git repo. So, deal with it. :)
+Constructive criticism welcome.
