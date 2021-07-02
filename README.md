@@ -22,7 +22,7 @@ An improvement upon a sad little setup whose only redeeming feature was glowy wi
 | dunst | Makes simple notification popups | | |
 | i3lock | A very simple screen locker | | |
 | imagemagick | Provides CLI image manipulation utilities | Required to set a dynamic background for i3lock | - |
-| vim | some weird text editor | Configuration requires [Vundle.vim](https://github.com/VundleVim/Vundle.vim) | emacs :\^) |
+| vim | some weird text editor | My configuration requires [Vundle.vim](https://github.com/VundleVim/Vundle.vim) | emacs :\^) |
 
 I use the i3-gaps "next" branch but the stable branch should work too. Not gonna test it, you're on your own.
 
@@ -30,29 +30,34 @@ Other random things:
 
 - xfce4-power-manager: I need this for my laptop because it's the only thing that can handle my chinaware laptop's weird screen backlight properly
 
-## Installation
-
-- install all necessary applications
-    - Install command for Arch Linux (substitute with your favorite AUR helper):  
-    `yay -S i3-gaps polybar polybar-spotify-module alacritty picom dunst i3lock imagemagick vim`
-- for vim: `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
-
 ## Fonts
 
 | Font name | Usage | Alternative(s)
 | --- | --- | --- |
 | Terminus | Main font | termsyn(u), scientifica |
-| Siji | Symbol font used in polybar | *(none)* |
+| [Siji](https://github.com/stark/siji) | Symbol font used in polybar | *(none)* |
 
-Note: If the .pcf version of Siji doesn't work, you may have to install the .bdf version. I had to do this. Download it from the repo, put it in `$HOME/.fonts/siji.bdf`, then run 
+
+## Installation
+
+- install all necessary applications
+    - Install command for Arch Linux (substitute with your favorite AUR helper):  
+    `yay -S i3-gaps polybar polybar-spotify-module alacritty picom dunst i3lock imagemagick vim terminus-font zsh zsh-grml-config`
+- the .pcf version of Siji doesn't work with modern versions of fontconfig. Download the .bdf version to `~/.fonts/siji.bdf`, then run `fc-cache -f -v`
+- copy all configuration files (or use symlinks. Do whatever you want)
+- don't just copy .zshrc, merge it with what you already have so that you don't break anything
+- check polybar config for screen setup
+- read i3 config, it's annotated. You will have to make some changes, especially for screens
+- vim setup: `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`, then `vim +PluginInstall +qall`
+- logout and login to i3. If already running i3, reload.
+
 
 # TODO
 
 In order of significance:
 
 - [x] improve polybar config
-- [ ] improve dunst config
-- [ ] setup mpd/ncmpcpp
+- [x] improve dunst config
 - [ ] rice zathura
 - [ ] maybe make a midnightcommander theme?
 
@@ -73,10 +78,8 @@ Github usernames unless noted otherwise.
 
 - Airblader - author of i3-gaps, and I stole some parts of his configs
 - adi1090x - master of rice whom I stole some configs from. Has an incredible i3 rice, check it out!
-- emkay443 - a friend who helped me with bash
+- emkay443 - a friend with 10 times more Linux knowledge than I have whom I keep pestering for help when stuff is broken
 - lokesh-krishna - for the Nord theme for rofi
-- reddit user /u/\_\_\_\_\_frost\_\_\_ (user deleted) - even though they never actually posted their dotfiles, they were
-great inspiration.
 
 # Trivia
 
