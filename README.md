@@ -10,23 +10,32 @@ An improvement upon a sad little setup whose only redeeming feature was glowy wi
 
 # Requirements and suggestions
 
-| Tool or resource | What is this? | Why do I use it? | Alternatives (if applicable) |
+...or just a list of included configs
+
+| Tool or resource | What is this? | Notes | Alternatives (if applicable) |
 | --- | --- | --- | --- |
-| [i3-gaps](https://github.com/Airblader/i3) | Fork of i3wm with useless gaps and other things | Because it's my favorite wm | Any wm you want to make your own configs for because I'm not helping with that. |
-| [polybar](https://github.com/jaagr/polybar) | Creates bars to display system information, highly configurable | polybar is amazing and basically the centerpiece of this setup | lemonbar if you're a masochist |
-| [Nord](https://github.com/arcticicestudio/nord) colorscheme | Popular colorscheme for terminals and CLI software | Looks nice and I haven't found anything that would fit this rice better | base16-ocean isn't ugly with this setup  |
-| xfce4-terminal | Xfce's terminal emulator | It's simple and does everything I need. Mainly used because termite doesn't provide proper window titles for i3 and polybar. | The Nord colorscheme requires any terminal emulator with 256 color support. Configs for **rxvt-unicode** (urxvt) and **termite** are provided. |
-| picom | Compositor that enables blur effects, transparency, simple animations and window shadows | The glowy border around active windows is a colored window shadow, which can only be created by a compositor. | compton |
-| xfce4-power-manager | Manages battery, power, and screen backlighting | I need it for my laptop because it's the only way I can easily use the arcane screen backlight technology this cheap chinaware monstrosity has | ? |
-| dunst | Makes simple notification popups | Again, it's simple and does everything I need | ? |
-| i3lock | A very simple screen locker | ditto | Any other screen locker |
-| imagemagick | Provides CLI image manipulation utilities | Required to set a dynamic background for i3lock | ? |
-| vim | A fast and efficient modal text editor | #vimmasterrace | emacs :\^) |
-| zsh | Z shell | It's just better than bash | Whatever you prefer. fish is cool. |
-| [grml-zsh-config](https://grml.org/zsh/) | A very extensive zsh configuration | Not required, I just like it | N/A
-| Arch Linux | A simple, lightweight GNU/Linux distribution | I use Arch btw | Install Gentoo |
+| [i3-gaps](https://github.com/Airblader/i3) | Fork of i3wm with useless gaps and other things | | |
+| [polybar](https://github.com/jaagr/polybar) | Creates bars to display system information, highly configurable | Plugins used: polybar-spotify-module | lemonbar maybe? |
+| [Nord](https://github.com/arcticicestudio/nord) colorscheme | Popular colorscheme for terminals and CLI software | | base16-ocean can fit too |
+| alacritty | Modern terminal emulator written in rust | The Nord colorscheme requires a 256 color capable terminal emulator | Configs for **termite** and **xfce4-terminal** (yes – it's surprisingly good for tiling WMs) are provided |
+| picom | Compositor | The glowy border around active windows is a colored window shadow | compton |
+| dunst | Makes simple notification popups | | |
+| i3lock | A very simple screen locker | | |
+| imagemagick | Provides CLI image manipulation utilities | Required to set a dynamic background for i3lock | - |
+| vim | some weird text editor | Configuration requires [Vundle.vim](https://github.com/VundleVim/Vundle.vim) | emacs :\^) |
 
 I use the i3-gaps "next" branch but the stable branch should work too. Not gonna test it, you're on your own.
+
+Other random things:
+
+- xfce4-power-manager: I need this for my laptop because it's the only thing that can handle my chinaware laptop's weird screen backlight properly
+
+## Installation
+
+- install all necessary applications
+    - Install command for Arch Linux (substitute with your favorite AUR helper):  
+    `yay -S i3-gaps polybar polybar-spotify-module alacritty picom dunst i3lock imagemagick vim`
+- for vim: `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
 
 ## Fonts
 
@@ -34,6 +43,8 @@ I use the i3-gaps "next" branch but the stable branch should work too. Not gonna
 | --- | --- | --- |
 | Terminus | Main font | termsyn(u), scientifica |
 | Siji | Symbol font used in polybar | *(none)* |
+
+Note: If the .pcf version of Siji doesn't work, you may have to install the .bdf version. I had to do this. Download it from the repo, put it in `$HOME/.fonts/siji.bdf`, then run 
 
 # TODO
 

@@ -20,15 +20,19 @@ floating_modifier $mod
 
 #font pango:Sauce Code Pro Nerd Font 8
 font pango:Terminus 10
-# for_window [class="^.*"] border none
 for_window [class="^.*"] border pixel 2
 
 gaps inner $default_gaps_inner
 gaps outer $default_gaps_outer
 
-workspace_auto_back_and_forth yes
 floating_minimum_size -1 x -1
 floating_maximum_size -1 x -1
+
+workspace_auto_back_and_forth yes
+
+# change this to fit your own setup. Use `xrandr --current` to find screens
+workspace 1 output DP-4.8
+workspace 2 output HDMI-0
 
 # == window-specific settings ==
 
@@ -80,10 +84,10 @@ client.placeholder		$night2	$night1	$snow0	$night2	$night2
 # ==============
 
 # open apps
-bindsym $mod+Return exec xfce4-terminal
-bindsym $mod+u exec xfce4-terminal
-bindsym $mod+Shift+Return exec xfce4-terminal --title=__scratchpad
-bindsym $mod+Shift+u exec xfce4-terminal --title=__scratchpad
+bindsym $mod+Return exec alacritty
+bindsym $mod+u exec alacritty
+#bindsym $mod+Shift+Return exec xfce4-terminal --title=__scratchpad
+#bindsym $mod+Shift+u exec xfce4-terminal --title=__scratchpad
 bindsym $mod+e exec thunar
 bindsym $mod+l exec --no-startup-id $HOME/scripts/lock.sh
 # bindsym $mod+m exec thunderbird, workspace 9
@@ -173,12 +177,13 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # volume stuff - doesn't quite work, left in for later tinkering. Not using it anyway because I control volume with an external DAC
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/scripts/volup
-bindsym XF86AudioMute exec --no-startup-id pactl -- set-sink-mute @DEFAULT_SINK@ toggle
-
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -5%
+#bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/scripts/volup
+#bindsym XF86AudioMute exec --no-startup-id pactl -- set-sink-mute @DEFAULT_SINK@ toggle
+#
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 
 # auto clicker
 bindsym $mod+c exec xdotool click --repeat 500 --delay 36 1
@@ -269,23 +274,17 @@ bindsym $mod+Shift+s mode $mode_screens
 
 # DESKTOP
 
+# background services
 exec --no-startup-id ~/.screenlayout/dual.sh
-exec_always --no-startup-id $HOME/scripts/picom_restart
-#exec_always --no-startup-id compton --shadow-exclude !focused
-exec_always --no-startup-id $HOME/scripts/barstart
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id dunst
+exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
+exec --no-startup-id redshift-gtk
+exec --no-startup-id spotify-listener
+
+# UI
 exec_always --no-startup-id feh --bg-fill $HOME/.wallpapers/ocean.jpg
-#exec_always --no-startup-id feh --bg-fill $HOME/.wallpapers/fern.jpg
-exec --no-startup-id nm-applet
-exec --no-startup-id pulseeffects --gapplication-service
-
-# LAPTOP
-
-# the wallpaper script sets a wallpaper based on battery level
-#exec --no-startup-id $HOME/scripts/wallpaper.sh
-#exec --no-startup-id compton --shadow-exclude !focused
-#exec_always --no-startup-id $HOME/scripts/barstart
-#exec --no-startup-id xfce4-power-manager
-#exec --no-startup-id dunst
-#exec --no-startup-id nm-applet
+exec_always --no-startup-id $HOME/scripts/barstart
+exec_always --no-startup-id $HOME/scripts/picom_restart
+# foreground applications
+exec telegram-desktop, move window to workspace 2
