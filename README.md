@@ -16,19 +16,15 @@ An improvement upon a sad little setup whose only redeeming feature was glowy wi
 | --- | --- | --- | --- |
 | [i3-gaps](https://github.com/Airblader/i3) | Fork of i3wm with useless gaps and other things | | |
 | [polybar](https://github.com/jaagr/polybar) | Creates bars to display system information, highly configurable | Plugins used: polybar-spotify-module | lemonbar maybe? |
-| [Nord](https://github.com/arcticicestudio/nord) colorscheme | Popular colorscheme for terminals and CLI software | | base16-ocean can fit too |
-| alacritty | Modern terminal emulator written in rust | The Nord colorscheme requires a 256 color capable terminal emulator | Configs for **termite** and **xfce4-terminal** (yes – it's surprisingly good for tiling WMs) are provided |
+| [Nord](https://github.com/arcticicestudio/nord) | Popular colorscheme for terminals and CLI software | | base16-ocean can fit too |
+| alacritty | Modern terminal emulator written in rust | The Nord colorscheme requires a 256 color capable terminal emulator | termite (config provided) |
 | picom | Compositor | The glowy border around active windows is a colored window shadow | compton |
 | dunst | Makes simple notification popups | | |
 | i3lock | A very simple screen locker | | |
-| imagemagick | Provides CLI image manipulation utilities | Required to set a dynamic background for i3lock | - |
+| imagemagick | Provides CLI image manipulation utilities | Required to set a dynamic background for i3lock | |
 | vim | some weird text editor | My configuration requires [Vundle.vim](https://github.com/VundleVim/Vundle.vim) | emacs :\^) |
+| zsh | z shell | using grml-zsh-config | |
 
-I use the i3-gaps "next" branch but the stable branch should work too. Not gonna test it, you're on your own.
-
-Other random things:
-
-- xfce4-power-manager: I need this for my laptop because it's the only thing that can handle my chinaware laptop's weird screen backlight properly
 
 ## Fonts
 
@@ -40,16 +36,13 @@ Other random things:
 
 ## Installation
 
-- install all necessary applications
-    - Install command for Arch Linux (substitute with your favorite AUR helper):  
+- install command for Arch Linux (mostly for myself so I can setup new installs easily):  
     `yay -S i3-gaps polybar polybar-spotify-module alacritty picom dunst i3lock imagemagick vim terminus-font zsh zsh-grml-config`
 - the .pcf version of Siji doesn't work with modern versions of fontconfig. Download the .bdf version to `~/.fonts/siji.bdf`, then run `fc-cache -f -v`
-- copy all configuration files (or use symlinks. Do whatever you want)
-- don't just copy .zshrc, merge it with what you already have so that you don't break anything
-- check polybar config for screen setup
-- read i3 config, it's annotated. You will have to make some changes, especially for screens
+- copy configs (or parts)
+- check polybar config to setup screens and pulseaudio sink
+- check i3 config, it's annotated. You will have to make some changes, especially for screens and audio stuff
 - vim setup: `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`, then `vim +PluginInstall +qall`
-- logout and login to i3. If already running i3, reload.
 
 
 # TODO

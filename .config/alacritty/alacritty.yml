@@ -8,6 +8,9 @@
 # References:
 #   https://github.com/alacritty/alacritty
 
+shell:
+  program: /bin/zsh
+
 colors:
   primary:
     background: '#2e3440'
@@ -57,3 +60,25 @@ colors:
     cyan: '#6d96a5'
     white: '#aeb3bb'
 
+font:
+  normal:
+    family: SauceCodePro Nerd Font Mono
+    style: Regular
+
+  bold:
+    family: SauceCodePro Nerd Font Mono
+    style: Bold
+
+  italic:
+    family: SauceCodePro Nerd Font Mono
+    style: Italic
+
+  bold_italic:
+    family: SauceCodePro Nerd Font Mono
+    style: Bold Italic
+
+  size: 10.0
+
+  offset:
+    x: 0
+    y: 0

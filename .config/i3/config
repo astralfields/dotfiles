@@ -281,10 +281,11 @@ exec --no-startup-id dunst
 exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
 exec --no-startup-id redshift-gtk
 exec --no-startup-id spotify-listener
+exec steam -silent
 
 # UI
 exec_always --no-startup-id feh --bg-fill $HOME/.wallpapers/ocean.jpg
 exec_always --no-startup-id $HOME/scripts/barstart
 exec_always --no-startup-id $HOME/scripts/picom_restart
 # foreground applications
-exec telegram-desktop, move window to workspace 2
+exec telegram-desktop, move container to workspace 2
