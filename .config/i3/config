@@ -278,8 +278,8 @@ bindsym $mod+Shift+s mode $mode_screens
 exec --no-startup-id ~/.screenlayout/dual.sh
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id dunst
-exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
-exec --no-startup-id redshift-gtk
+#exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
+#exec --no-startup-id redshift-gtk
 exec --no-startup-id spotify-listener
 exec steam -silent
 
@@ -287,5 +287,3 @@ exec steam -silent
 exec_always --no-startup-id feh --bg-fill $HOME/.wallpapers/ocean.jpg
 exec_always --no-startup-id $HOME/scripts/barstart
 exec_always --no-startup-id $HOME/scripts/picom_restart
-# foreground applications
-exec telegram-desktop, move container to workspace 2

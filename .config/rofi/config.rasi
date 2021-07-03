@@ -1,0 +1,12 @@
+configuration {
+	modi:				"drun,run";
+	width:				1000;
+	lines:				10;
+	font:				"SauceCodePro Nerd Font Mono 14";
+	show-match:			false;
+	separator-style:	"solid";
+	hide-scrollbar:		false;
+	theme:				"nord";
+}
+
+/* vim:ft=css

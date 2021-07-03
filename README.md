@@ -16,12 +16,11 @@ An improvement upon a sad little setup whose only redeeming feature was glowy wi
 | --- | --- | --- | --- |
 | [i3-gaps](https://github.com/Airblader/i3) | Fork of i3wm with useless gaps and other things | | |
 | [polybar](https://github.com/jaagr/polybar) | Creates bars to display system information, highly configurable | Plugins used: polybar-spotify-module | lemonbar maybe? |
-| [Nord](https://github.com/arcticicestudio/nord) | Popular colorscheme for terminals and CLI software | | base16-ocean can fit too |
-| alacritty | Modern terminal emulator written in rust | The Nord colorscheme requires a 256 color capable terminal emulator | termite (config provided) |
-| picom | Compositor | The glowy border around active windows is a colored window shadow | compton |
+| [Nord](https://github.com/arcticicestudio/nord) | Popular colorscheme for terminals and CLI software | Requires 256 color terminal emulator | base16-ocean can fit too |
+| alacritty | Modern terminal emulator written in rust | | termite (config provided) |
+| picom | Compositor | For glowy borders | compton |
 | dunst | Makes simple notification popups | | |
-| i3lock | A very simple screen locker | | |
-| imagemagick | Provides CLI image manipulation utilities | Required to set a dynamic background for i3lock | |
+| i3lock | A very simple screen locker | My lock script requires imagemagick | |
 | vim | some weird text editor | My configuration requires [Vundle.vim](https://github.com/VundleVim/Vundle.vim) | emacs :\^) |
 | zsh | z shell | using grml-zsh-config | |
 
@@ -30,20 +29,22 @@ An improvement upon a sad little setup whose only redeeming feature was glowy wi
 
 | Font name | Usage | Alternative(s)
 | --- | --- | --- |
-| Terminus | Main font | termsyn(u), scientifica |
+| Terminus | Bar font | termsyn(u), scientifica |
 | [Siji](https://github.com/stark/siji) | Symbol font used in polybar | *(none)* |
+| Sauce Code Pro Nerd Font Mono | Terminal font | FuraCode Nerd Font Mono? |
 
 
 ## Installation
 
 - install command for Arch Linux (mostly for myself so I can setup new installs easily):  
-    `yay -S i3-gaps polybar polybar-spotify-module alacritty picom dunst i3lock imagemagick vim terminus-font zsh zsh-grml-config`
+    `yay -S i3-gaps polybar polybar-spotify-module alacritty picom dunst i3lock imagemagick vim terminus-font zsh zsh-grml-config playerctl feh`
 - the .pcf version of Siji doesn't work with modern versions of fontconfig. Download the .bdf version to `~/.fonts/siji.bdf`, then run `fc-cache -f -v`
-- copy configs (or parts)
+- copy configs (or parts)\*
 - check polybar config to setup screens and pulseaudio sink
 - check i3 config, it's annotated. You will have to make some changes, especially for screens and audio stuff
 - vim setup: `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`, then `vim +PluginInstall +qall`
 
+\* or symlink. See Trivia ↓
 
 # TODO
 
