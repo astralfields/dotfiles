@@ -6,7 +6,7 @@ configuration {
 	show-match:			false;
 	separator-style:	"solid";
 	hide-scrollbar:		false;
-	theme:				"nord";
 }
+@theme "nord"
 
 /* vim:ft=css

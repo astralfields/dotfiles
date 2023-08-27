@@ -6,33 +6,19 @@ filetype off
 " PLUGINS
 " =======
 
-" set runtime path to include Vundle and init
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin()
 
-Plugin 'VundleVim/Vundle.vim'		" required - gotta let Vundle manage Vundle
-" Plugin 'vim-airline/vim-airline'	" lightweight powerline for vim
-" Plugin 'vim-airline/vim-airline-themes'
-Plugin 'itchyny/lightline.vim'
-Plugin 'jiangmiao/auto-pairs'		" spawn matching brackets/quotes
-Plugin 'bronson/vim-trailing-whitespace'	" show trailing space
-Plugin 'SirVer/ultisnips'			" code snippets
-Plugin 'honza/vim-snippets'			" snippets for ultisnips
-Plugin 'arcticicestudio/nord-vim'	" colorscheme
-" Plugin 'scrooloose/nerdtree'		" file tree
-" Plugin 'Xuyuanp/nerdtree-git-plugin'	" git support for nerdtree
-" Plugin 'morhetz/gruvbox'			" colorscheme
-" Plugin 'chriskempson/base16-vim'	" colorschemes
+Plug 'itchyny/lightline.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'mboughaba/i3config.vim'
+Plug 'arcticicestudio/nord-vim'
+" Plugin 'morhetz/gruvbox'
 
-call vundle#end()
+call plug#end()
 
-" install Vundle plugins with :PluginInstall
-" update with :PluginUpdate
-" or force updating with :PluginInstall!
-
-if v:progname =~? "evim"
-  finish
-endif
 
 " ULTISNIPS SETTINGS
 " ==================

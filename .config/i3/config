@@ -1,9 +1,11 @@
-# vim:filetype=i3
+# vim: filetype=i3config
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 
+
+# ===============
 # == VARIABLES ==
 # ===============
 
@@ -13,6 +15,8 @@ set $default_gaps_inner 20
 set $default_gaps_outer 0
 
 
+
+# ==============
 # == SETTINGS ==
 # ==============
 
@@ -33,6 +37,12 @@ workspace_auto_back_and_forth yes
 # change this to fit your own setup. Use `xrandr --current` to find screens
 workspace 1 output DP-4.8
 workspace 2 output HDMI-0
+workspace 3 output DP-4.8
+workspace 4 output HDMI-0
+workspace 5 output DP-4.8
+workspace 6 output HDMI-0
+workspace 7 output DP-4.8
+workspace 8 output HDMI-0
 
 # == window-specific settings ==
 
@@ -47,12 +57,17 @@ for_window [class="Audacious"] border none
 for_window [title="__scratchpad"] floating enable
 for_window [title="__nmtui"] floating enable
 
-assign [class="(?i)thunderbird"] workspace 9
+assign [class="(?i)Spotify"] workspace 2
+assign [class="(?i)TelegramDesktop"] workspace 2
+assign [class="(?i)easyeffects"] workspace 4
 
+
+
+# ============
 # == COLORS ==
 # ============
 
-# Ocean v2 colors
+# Ocean v2 (Nord colors, except for "neon")
 set $night0 #2e3440
 set $night1 #3b4252
 set $night2 #434c5e
@@ -80,22 +95,17 @@ client.placeholder		$night2	$night1	$snow0	$night2	$night2
 
 
 
+# ==============
 # == KEYBINDS ==
 # ==============
 
 # open apps
 bindsym $mod+Return exec alacritty
-bindsym $mod+u exec alacritty
-#bindsym $mod+Shift+Return exec xfce4-terminal --title=__scratchpad
-#bindsym $mod+Shift+u exec xfce4-terminal --title=__scratchpad
+bindsym $mod+Shift+Return exec cool-retro-term
 bindsym $mod+e exec thunar
 bindsym $mod+l exec --no-startup-id $HOME/scripts/lock.sh
 # bindsym $mod+m exec thunderbird, workspace 9
 bindsym $mod+w exec firefox
-# (I use mod+u for my laptop, because its Return key is broken...)
-
-# media mode: using Chrom(e/ium), put YouTube into fullscreen and execute this. Thanks Airblader! Wish it worked with Firefox though.
-# bindsym $mod+y fullscreen disable; floating enable; resize set 300 200; sticky enable; move window to position 1060 6
 
 bindsym --release $mod+d exec rofi -show drun
 
@@ -131,10 +141,10 @@ bindsym $mod+t layout tabbed
 bindsym $mod+z layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+y floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+y focus mode_toggle
 
 # toggle sticky mode for floating window
 bindsym $mod+s sticky toggle, exec notify-send "Sticky mode toggled"
@@ -188,9 +198,15 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 # auto clicker
 bindsym $mod+c exec xdotool click --repeat 500 --delay 36 1
 
+# screenshot
+bindsym Print exec flameshot gui
+bindsym Shift+Print exec flameshot screen
 
+
+
+# ===========
 # == MODES ==
-# ###########
+# ===========
 
 # RESIZE MODE
 set $mode_resize "resize: use arrow keys"
@@ -269,21 +285,31 @@ mode $mode_screens {
 }
 bindsym $mod+Shift+s mode $mode_screens
 
+
+
+# ===============
 # == AUTOSTART ==
 # ===============
 
-# DESKTOP
-
-# background services
-exec --no-startup-id ~/.screenlayout/dual.sh
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id dunst
-#exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
-#exec --no-startup-id redshift-gtk
-exec --no-startup-id spotify-listener
-exec steam -silent
-
 # UI
-exec_always --no-startup-id feh --bg-fill $HOME/.wallpapers/ocean.jpg
+exec --no-startup-id ~/.screenlayout/dual.sh
 exec_always --no-startup-id $HOME/scripts/barstart
 exec_always --no-startup-id $HOME/scripts/picom_restart
+
+# background services
+exec --no-startup-id dunst
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id spotify-listener
+exec --no-startup-id flameshot
+exec steam -silent
+
+# workspace 2 stuff
+exec --no-startup-id "i3-msg 'workspace 2; layout tabbed'"
+exec --no-startup-id telegram-desktop
+exec --no-startup-id spotify
+
+# workspace 4 stuff
+exec easyeffects
+
+# wallpaper
+exec_always --no-startup-id feh --bg-fill $HOME/.wallpapers/ocean.jpg

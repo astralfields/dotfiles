@@ -2,77 +2,66 @@
 
 An improvement upon a sad little setup whose only redeeming feature was glowy window borders, which were relatively unknown in tiling WMs at the time I created it.
 
+Uses [Nord](https://github.com/arcticicestudio/nord) colorscheme.
+
 **This rice is still considered WIP**
 
 ![temp-screenshot](https://imgur.com/eYRFB6M.png)
 
 (WIP screenshot)
 
-# Requirements and suggestions
+# Included configs
 
-...or just a list of included configs
-
-| Tool or resource | What is this? | Notes | Alternatives (if applicable) |
-| --- | --- | --- | --- |
-| [i3-gaps](https://github.com/Airblader/i3) | Fork of i3wm with useless gaps and other things | | |
-| [polybar](https://github.com/jaagr/polybar) | Creates bars to display system information, highly configurable | Plugins used: polybar-spotify-module | lemonbar maybe? |
-| [Nord](https://github.com/arcticicestudio/nord) | Popular colorscheme for terminals and CLI software | Requires 256 color terminal emulator | base16-ocean can fit too |
-| alacritty | Modern terminal emulator written in rust | | termite (config provided) |
-| picom | Compositor | For glowy borders | compton |
-| dunst | Makes simple notification popups | | |
-| i3lock | A very simple screen locker | My lock script requires imagemagick | |
-| vim | some weird text editor | My configuration requires [Vundle.vim](https://github.com/VundleVim/Vundle.vim) | emacs :\^) |
-| zsh | z shell | using grml-zsh-config | |
-
+- i3
+- polybar
+- alacritty
+- picom
+- dunst
+- vim
+- zsh (with grml config)
+- i3lock script
 
 ## Fonts
 
-| Font name | Usage | Alternative(s)
-| --- | --- | --- |
-| Terminus | Bar font | termsyn(u), scientifica |
-| [Siji](https://github.com/stark/siji) | Symbol font used in polybar | *(none)* |
-| Sauce Code Pro Nerd Font Mono | Terminal font | FuraCode Nerd Font Mono? |
+- Terminus - Bar font (termsyn(u) or scientifica look nice too)
+- [Siji](https://github.com/stark/siji) - Symbol font used in polybar
+- Sauce Code Pro Nerd Font Mono - Terminal font with full unicode support
 
 
 ## Installation
 
 - install command for Arch Linux (mostly for myself so I can setup new installs easily):  
-    `yay -S i3-gaps polybar polybar-spotify-module alacritty picom dunst i3lock imagemagick vim terminus-font zsh zsh-grml-config playerctl feh`
+    `yay -S i3-wm polybar polybar-spotify-module alacritty picom dunst i3lock imagemagick vim terminus-font zsh zsh-grml-config playerctl feh`
 - the .pcf version of Siji doesn't work with modern versions of fontconfig. Download the .bdf version to `~/.fonts/siji.bdf`, then run `fc-cache -f -v`
-- copy configs (or parts)\*
-- check polybar config to setup screens and pulseaudio sink
-- check i3 config, it's annotated. You will have to make some changes, especially for screens and audio stuff
-- vim setup: `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`, then `vim +PluginInstall +qall`
+- copy/symlink configs (or parts thereof)\*
+- edit polybar and i3 configs to setup screens and audio. i3 config is annotated
 
-\* or symlink. See Trivia ↓
+Vim setup:
+
+    # install vim-plug, then run vim to install plugins and exit
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    vim +PlugInstall +qall
 
 # TODO
 
-In order of significance:
-
-- [x] improve polybar config
-- [x] improve dunst config
 - [ ] rice zathura
-- [ ] maybe make a midnightcommander theme?
 
 # Disclaimer
 
 Use at your own risk. I'm not responsible if you broke something because you just used everything
 as-is, without modifying files to fit your system.
 
-I'm working on making the config files cleaner and comment them nicely. Until then, things may be a little chaotic.
+You may use any of the config files I created (not themes, not image files) as you see fit.
 
-Please pretend that the MIT license applies to all files in this repository. I don't really care what you do
-with them - share, copy, modify, fork, whatever. Just don't post them elsewhere and say you made them. I use
-material from other people too, with varying licenses, so I don't want to actually apply a license.
+Wallpaper images may or may not be copyrighted, they're only for private usage.
 
 # Acknowledgments
 
-Github usernames unless noted otherwise.
+Github usernames:
 
-- Airblader - author of i3-gaps, and I stole some parts of his configs
+- Airblader - i3 developer, and I stole some parts of his configs
 - adi1090x - master of rice whom I stole some configs from. Has an incredible i3 rice, check it out!
-- emkay443 - a friend with 10 times more Linux knowledge than I have whom I keep pestering for help when stuff is broken
+- emkay443 - a friend whom I keep pestering for help when I break things
 - lokesh-krishna - for the Nord theme for rofi
 
 # Trivia
