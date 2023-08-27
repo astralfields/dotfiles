@@ -4,8 +4,6 @@ An improvement upon a sad little setup whose only redeeming feature was glowy wi
 
 Uses [Nord](https://github.com/arcticicestudio/nord) colorscheme.
 
-**This rice is still considered WIP**
-
 ![temp-screenshot](https://imgur.com/eYRFB6M.png)
 
 (WIP screenshot)
