@@ -10,7 +10,7 @@ Uses [Nord](https://github.com/arcticicestudio/nord) colorscheme.
 
 (WIP screenshot)
 
-# Included configs
+## Included configs
 
 - i3
 - polybar
@@ -42,11 +42,11 @@ Vim setup:
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     vim +PlugInstall +qall
 
-# TODO
+## TODO
 
 - [ ] rice zathura
 
-# Disclaimer
+## Disclaimer
 
 Use at your own risk. I'm not responsible if you broke something because you just used everything
 as-is, without modifying files to fit your system.
@@ -55,7 +55,7 @@ You may use any of the config files I created (not themes, not image files) as y
 
 Wallpaper images may or may not be copyrighted, they're only for private usage.
 
-# Acknowledgments
+## Acknowledgments
 
 Github usernames:
 
@@ -64,7 +64,7 @@ Github usernames:
 - emkay443 - a friend whom I keep pestering for help when I break things
 - lokesh-krishna - for the Nord theme for rofi
 
-# Trivia
+## Trivia
 
 I currently use this setup by keeping this repo in a folder in my $HOME, and symlinking
 all files from their actual locations. This way I can more easily keep things up-to-date
