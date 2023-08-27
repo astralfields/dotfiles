@@ -36,10 +36,11 @@ Uses [Nord](https://github.com/arcticicestudio/nord) colorscheme.
 - copy/symlink configs (or parts thereof)\*
 - edit polybar and i3 configs to setup screens and audio. i3 config is annotated
 
-Vim setup:
+Vim setup: install vim-plug, then run vim to install plugins and exit.
 
-    # install vim-plug, then run vim to install plugins and exit
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
     vim +PlugInstall +qall
 
 ## TODO
@@ -57,24 +58,7 @@ Wallpaper images may or may not be copyrighted, they're only for private usage.
 
 ## Acknowledgments
 
-Github usernames:
-
 - Airblader - i3 developer, and I stole some parts of his configs
 - adi1090x - master of rice whom I stole some configs from. Has an incredible i3 rice, check it out!
 - emkay443 - a friend whom I keep pestering for help when I break things
 - lokesh-krishna - for the Nord theme for rofi
-
-## Trivia
-
-I currently use this setup by keeping this repo in a folder in my $HOME, and symlinking
-all files from their actual locations. This way I can more easily keep things up-to-date
-on both my desktop PC and laptop, since I just need to add/commit/push changed files,
-and pull on the other device. Then I just need to change comments around since a few
-things differ between my laptop and desktop setups.
-
-(A more elegant way of doing this would be making
-my entire home folder a git repo and taking care of include/exclude files... but I'm not a programmer,
-I literally only use git to sync this rice, and in the spirit of "don't fix what's not broken"
-I have no intention of changing it.)
-
-Constructive criticism welcome.
