@@ -24,17 +24,17 @@ There are some remaining config files for a few other things as well, such as te
 ## Fonts
 
 - Terminus - Bar font. Alternatives: termsyn, termsynu, scientifica
-- [Siji](https://github.com/stark/siji) - Symbol font used in polybar
-- Sauce Code Pro Nerd Font Mono - Terminal font with full unicode support
+- [Siji](https://github.com/stark/siji) - Symbol font used in polybar (use bdf version!)
+- [Sauce Code Pro Nerd Font Mono](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/SourceCodePro) - Terminal font with full unicode support
 
 
 ## Installation
 
 - all-in-one install command for Arch and derivates:  
     `yay -S arandr i3-wm polybar polybar-spotify-module alacritty picom dunst i3lock imagemagick vim terminus-font zsh grml-zsh-config playerctl feh`
-- the .pcf version of Siji doesn't work with modern versions of fontconfig. Download the .bdf version to `~/.fonts/siji.bdf`, then run `fc-cache -f -v`
+- download fonts (linked above) to `~/.fonts`, then run `fc-cache -f -v`
 - copy/symlink configs, edit as required
-- definitely edit polybar and i3 configs, you need to setup display and audio stuff. These configs are annotated
+- run arandr, save a screen layout script and put it into autostart. Take note of the display names such as "HDMI-0" and change the relevant settings in i3 and polybar configs (they're annotated)
 
 vim setup – install vim-plug, then run vim to install plugins and exit:
 
